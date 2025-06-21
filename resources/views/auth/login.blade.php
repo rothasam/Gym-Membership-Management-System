@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class=" card shadow p-4" style="min-width: 450px; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; border: 1px solid rgba(13, 112, 143, 0.49);">
+    <div class=" card shadow p-4" style="min-width: 450px; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ;">
         <h3 class="mb-3 text-black">Login</h3>
         <p class="mb-4">Welcome to C4FINESS</p>
         <form method="POST" action="{{ route('login') }}">

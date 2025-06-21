@@ -8,6 +8,8 @@
 
     <!-- Bootstrap (optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         html,
@@ -28,11 +30,16 @@
         }
 
         .sidebar .nav-link {
+            margin: 2px 0;
             color: rgb(138, 131, 131);
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            transition: 0.3 linear;
         }
 
         .sidebar .nav-link:hover {
             background-color: rgb(240, 14, 101);
+
             color: #ffffff;
         }
 
@@ -53,22 +60,49 @@
 
     {{-- Sidebar --}}
     <div class="sidebar">
-        <h4 class="text-black">C4FINESS</h4>
-        <ul class="nav flex-column">
+        <h4 class="text-black mb-5">C4FINESS</h4>
+        <ul class="nav flex-column ">
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <i class="fas fa-tachometer-alt me-2"></i>
+                    Dashboard
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('members.register') ? 'active' : '' }}" href="{{ route('members.register') }}">Register Member</a>
+                <a class="nav-link {{ request()->routeIs('members.register') ? 'active' : '' }}" href="{{ route('members.register') }}">
+                    <i class="fas fa-user-plus me-2"></i>
+                    Register
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('classes.index') ? 'active' : '' }}" href="{{ route('classes.index') }}">Class</a>
+                <a class="nav-link {{ request()->routeIs('members.show') ? 'active' : '' }}" href="{{ route('members.show') }}">
+                    <i class="fas fas fa-user me-2"></i>
+                    Member
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('classes.register') ? 'active' : '' }}" href="{{ route('classes.register') }}">Class Register</a>
+                <a class="nav-link {{ request()->routeIs('classes.index') ? 'active' : '' }}" href="{{ route('classes.index') }}">
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    Class
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('plans.index') ? 'active' : '' }}" href="{{ route('plans.index') }}">Membership Plan</a>
+                <a class="nav-link {{ request()->routeIs('classes.create') ? 'active' : '' }}" href="{{ route('classes.create') }}">
+                    <i class="fas fa-edit me-2"></i>
+                    Class Register
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('plans.create') ? 'active' : '' }}" href="{{ route('plans.create') }}">
+                    <i class="fas fa-id-card me-2"></i>
+                    Membership Plan
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('members.attendance') ? 'active' : '' }}" href="{{ route('members.attendance') }}">
+                    <i class="fas fa-id-card me-2"></i>
+                    Attendance
+                </a>
             </li>
         </ul>
     </div>
