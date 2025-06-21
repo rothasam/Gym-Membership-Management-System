@@ -1,20 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Register Member')
-
-@section('styles')
-
-@endsection
+@section('title', 'Member Edit')
 
 @section('content')
 @include('layouts.header')
 @include('partials.nav')
-<!-- style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; -->
+
 <div class="d-flex justify-content-center mt-4">
 
     <div class=" card shadow-sm w-75" style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; position:relative;">
         <div class="card-header text-light" style="background-color: rgb(240, 14, 101);">
-            <h4 class="mb-0">Register New Member</h4>
+            <h4 class="mb-0">Update</h4>
         </div>
         <div class="card-body">
             <form>
@@ -76,19 +72,18 @@
                     <div class="col-md-4">
                         <h1 class=" text-center">Plan</h1>
                         <div class="mb-3">
-                            <label>Choose Plan</label>
-                            <select class="form-control" id="plan-select">
-                                <option value="">-- Select Plan --</option>
-                                <option data-price="150" value="1">Basic Plan 150$/month</option>
-                                <option data-price="250" value="2">Standard Plan 250$/month</option>
-                                <option data-price="500" value="3">Premium Plan 500$/month</option>
-                            </select>
+                            <label>Plan</label>
+                            <input type="text" class="form-control" id="plan-select" readonly>
                         </div>
                         <div class="mb-3">
                             <label>Price</label>
-                            <input type="text" class="form-control" id="plan-price" readonly placeholder="$0.00">
+                            <input type="text" class="form-control" id="plan-price" readonly>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 text-center " style="margin-top:50px;">
+                            <a class="btn btn-primary {{ request()->routeIs('subcriptions.update') ? 'active' : '' }}" href="{{ route('subcriptions.update') }}" style="background-color:rgb(240, 14, 101); border:none;">{{--{{ route('plans.upgrade', ['member_id' => 1]) }}--}}
+                            <i class="fas fa-arrow-up"></i> Upgrade Plan</a>
+                        </div>
+                        {{-- <div class="mb-3">
                             <label class="form-label mb-2">Payment Method</label>
 
                             <div class="form-check d-flex mb-4 align-items-center justify-content-evenly w-75" style="background-color: #ffffff;padding-right:80px;border-radius:10px;">
@@ -117,21 +112,21 @@
                             </div>
 
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
                 <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-success px-4" style="background-color: rgb(240, 14, 101); border:none;">Register</button>
+                    <button type="submit" class="btn btn-success px-4" style="background-color: rgb(240, 14, 101); border:none;">Update</button>
                 </div>
             </form>
         </div>
     </div>
-        <!-- Backdrop -->
-    <div id="deleteBackdrop"
-        class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-none"
-        style="z-index: 1040;">
-    </div>
+    <!-- Backdrop -->
+<div id="deleteBackdrop"
+     class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-none"
+     style="z-index: 1040;">
+</div>
     <!-- Success Message Card (Hidden Initially) -->
     <div id="successCard" class="card shadow-sm w-25 mx-auto h-50 d-none" style="background-color:#ffffff;position:absolute; z-index:1041;">
         <div class="card-body">
@@ -139,7 +134,7 @@
                 <div><i class="fas fa-check-circle text-center text-light" style="font-size: 70px;"></i></div>
                 <h4 class="card-title text-success mb-2 text-light">Success</h4>
             </div>
-            <p class="card-text p-3 text-center">Congradulation, your account has been sucsessfully Created</p>
+            <p class="card-text p-3 text-center">Congradulation, your account has been sucsessfully Updated</p>
             <div class="d-flex justify-content-center mt-4">
                 <button class="btn btn-success px-3">Continue</button>
             </div>
@@ -148,7 +143,6 @@
     </div>
 </div>
 @endsection
-
 @section('scripts')
-<script src="{{ asset('js/member-register.js') }}"></script>
+<script src="{{ asset('js/member-edit.js') }}"></script>
 @endsection
