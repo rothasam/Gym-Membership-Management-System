@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('gym_classes', function (Blueprint $table) {
-            $table->integerIncrements('gym_class_id')->primary();
+            $table->integerIncrements('gym_class_id');
             $table->string('class_name');
             $table->text('description')->nullable();
+            $table->unsignedSmallInteger('total_member');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();

@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('daily_attendances', function (Blueprint $table) {
-            $table->mediumIncrements('daily_attendance_id')->primary();
+            $table->mediumIncrements('daily_attendance_id');
             $table->unsignedInteger('member_id');
             $table->date('check_in');
             $table->date('check_out');
+             $table->foreign('member_id')->references('member_id')->on('members')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

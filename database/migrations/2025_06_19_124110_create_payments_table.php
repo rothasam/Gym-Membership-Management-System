@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->mediumIncrements('payment_id')->primary();
+            $table->mediumIncrements('payment_id');
             $table->unsignedMediumInteger('plan_subscription_id');
             $table->decimal('amount', 10, 2);
-            $table->enum('payment_method', ['credit_card', 'debit_card', 'cash', 'bank_transfer', 'other']);
+            $table->enum('payment_method', ['credit_card', 'cash', 'bank_transfer']);
             $table->dateTime('paid_date');
             $table->unsignedInteger('user_id');
+             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

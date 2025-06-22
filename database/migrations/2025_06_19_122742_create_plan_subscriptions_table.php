@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plan_subscriptions', function (Blueprint $table) {
-            $table->mediumIncrements('plan_subscription_id')->primary();
+            $table->mediumIncrements('plan_subscription_id');
+            $table->unsignedInteger('member_id');
             $table->unsignedSmallInteger('membership_plan_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['active', 'expired ']);
+            $table->foreign('member_id')->references('member_id')->on('members')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('membership_plan_id')->references('membership_plan_id')->on('membership_plans')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

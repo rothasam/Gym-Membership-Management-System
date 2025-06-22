@@ -10,6 +10,7 @@ class ClassRegisteration extends Model
     protected $primaryKey = 'class_regissteration_id';
     public $incrementing = true;
 
+    public $timestamps = false;
     protected $fillable = [
         'member_id', 
         'gym_class_id', 

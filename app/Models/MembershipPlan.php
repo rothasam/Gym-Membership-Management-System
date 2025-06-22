@@ -13,7 +13,7 @@ class MembershipPlan extends Model
     protected $fillable = [
         'name', 
         'price', 
-        'duration_days', 
+        'duration_month', 
         'description',
         'total_class',
     ];

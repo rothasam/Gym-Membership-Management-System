@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('membership_plans', function (Blueprint $table) {
-            $table->smallIncrements('membership_plan_id')->primary();
+            $table->smallIncrements('membership_plan_id');
             $table->string('name');
-            $table->decimal('price', 10, 2)->unsigned();
-            $table->unsignedSmallInteger('duration_days');
+            $table->decimal('price', 10, 2);
+            $table->unsignedSmallInteger('duration_month');
             $table->text('description')->nullable();
             $table->unsignedTinyInteger('total_class')->nullable();
             $table->timestamps();
