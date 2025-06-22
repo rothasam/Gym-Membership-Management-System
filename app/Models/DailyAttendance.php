@@ -14,6 +14,7 @@ class DailyAttendance extends Model
         'member_id', 
         'check_in', 
         'check_out',
+        'is_deleted'
     ];
 
     public function member () {

@@ -22,7 +22,8 @@ class MemberSeeder extends Seeder
                 'phone' => '012345678',
                 'email' => 'sok.dara@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2024-01-15'
+                'joined_date' => '2024-01-15',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'An',
@@ -32,7 +33,8 @@ class MemberSeeder extends Seeder
                 'phone' => '097865422',
                 'email' => 'meng.hour@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2022-12-20'
+                'joined_date' => '2022-12-20',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'Then',
@@ -42,7 +44,8 @@ class MemberSeeder extends Seeder
                 'phone' => '098987654',
                 'email' => 'siv.thean@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2025-01-01'
+                'joined_date' => '2025-01-01',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'Sim',
@@ -52,7 +55,8 @@ class MemberSeeder extends Seeder
                 'phone' => '011223344',
                 'email' => 'sim.rathana@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2023-01-01'
+                'joined_date' => '2023-01-01',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'Huy',
@@ -62,7 +66,8 @@ class MemberSeeder extends Seeder
                 'phone' => '099887766',
                 'email' => 'sambath@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2024-06-25'
+                'joined_date' => '2024-06-25',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'Choun',
@@ -72,7 +77,8 @@ class MemberSeeder extends Seeder
                 'phone' => '017889966',
                 'email' => 'davin.choun@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2024-06-25'
+                'joined_date' => '2024-06-25',
+                'is_deleted' => 0,
             ],
             [
                 'first_name' => 'Sam',
@@ -82,7 +88,8 @@ class MemberSeeder extends Seeder
                 'phone' => '012334455',
                 'email' => 'rotha.sam@gmail.com',
                 'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2023-03-29'
+                'joined_date' => '2023-03-29',
+                'is_deleted' => 0,
             ],
         ];
 

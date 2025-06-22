@@ -2,8 +2,6 @@
 
 @section('title', 'Register Member')
 
-
-
 @section('content')
 @include('partials.header')
 
@@ -15,7 +13,7 @@
             <h4 class="mb-0">Register New Member</h4>
         </div>
         <div class="card-body">
-            <form>
+            <form >
                 <div class="row">
                     {{-- Column 1 --}}
                     <div class="col-md-8">

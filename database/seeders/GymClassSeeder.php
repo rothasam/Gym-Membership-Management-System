@@ -20,6 +20,7 @@ class GymClassSeeder extends Seeder
                 'total_member' => 15,
                 'start_time' => '08:00:00',
                 'end_time' => '10:00:00',
+                'is_deleted' => 0
             ],
             [
                 'class_name' => 'HIIT Blast',
@@ -27,6 +28,7 @@ class GymClassSeeder extends Seeder
                 'total_member' => 20,
                 'start_time' => '17:00:00',
                 'end_time' => '19:00:00',
+                'is_deleted' => 0
             ],
             [
                 'class_name' => 'Pilates Core',
@@ -34,6 +36,7 @@ class GymClassSeeder extends Seeder
                 'total_member' => 12,
                 'start_time' => '06:30:00',
                 'end_time' => '07:30:00',
+                'is_deleted' => 0
             ],
             [
                 'class_name' => 'Zumba Dance',
@@ -41,6 +44,7 @@ class GymClassSeeder extends Seeder
                 'total_member' => 25,
                 'start_time' => '13:30:00',
                 'end_time' => '15:00:00',
+                'is_deleted' => 0
             ],
             [
                 'class_name' => 'Strength Training',
@@ -48,6 +52,7 @@ class GymClassSeeder extends Seeder
                 'total_member' => 18,
                 'start_time' => '06:40:00',
                 'end_time' => '08:00:00',
+                'is_deleted' => 0
             ],
         ];
 

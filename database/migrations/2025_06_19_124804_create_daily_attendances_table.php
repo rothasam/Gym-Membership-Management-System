@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('member_id');
             $table->date('check_in');
             $table->date('check_out');
+            $table->boolean('is_deleted')->default(false);
              $table->foreign('member_id')->references('member_id')->on('members')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

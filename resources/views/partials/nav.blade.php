@@ -8,13 +8,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('members.register') ? 'active' : '' }}" href="{{ route('members.register') }}">
+                <a class="nav-link {{ request()->routeIs('members.create') ? 'active' : '' }}" href="{{ route('members.create') }}">
                     <i class="fas fa-user-plus me-2"></i>
                     Register
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('members.show') ? 'active' : '' }}" href="{{ route('members.show') }}">
+                <a class="nav-link {{ request()->routeIs('members.index') ? 'active' : '' }}" href="{{ route('members.index') }}">
                     <i class="fas fas fa-user me-2"></i>
                     Member
                 </a>

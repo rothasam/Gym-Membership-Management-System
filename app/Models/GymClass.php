@@ -15,6 +15,7 @@ class GymClass extends Model
         'total_member',
         'start_time',
         'end_time',
+        'is_deleted'
     ];
 
     public function classRegisterations() {

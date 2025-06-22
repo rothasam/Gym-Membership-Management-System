@@ -20,6 +20,7 @@ class MembershipPlanSeeder extends Seeder
                 'duration_month' => 1,
                 'description' => 'Perfect for beginners. Access to all basic classes.',
                 'total_class' => 8,
+                'is_deleted' => 0
             ],
             [
                 'name' => 'Standard',
@@ -27,6 +28,7 @@ class MembershipPlanSeeder extends Seeder
                 'duration_month' => 3,
                 'description' => 'Access to all classes including some advanced workshops.',
                 'total_class' => 24,
+                'is_deleted' => 0
             ],
             [
                 'name' => 'Premium',
@@ -34,6 +36,7 @@ class MembershipPlanSeeder extends Seeder
                 'duration_month' => 6,
                 'description' => 'Unlimited class access with priority booking and free events.',
                 'total_class' => 50, 
+                'is_deleted' => 0
             ],
             [
                 'name' => 'Yearly VIP',
@@ -41,6 +44,7 @@ class MembershipPlanSeeder extends Seeder
                 'duration_month' => 12,
                 'description' => 'Best value for frequent members. Unlimited everything.',
                 'total_class' => 100,
+                'is_deleted' => 0
             ],
         ];
 

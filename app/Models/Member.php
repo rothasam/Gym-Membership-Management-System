@@ -20,6 +20,7 @@ class Member extends Model
         'email', 
         'address',
         'joined_date',
+        'is_deleted'
     ];
 
     public function planSubscriptions() {

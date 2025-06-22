@@ -16,6 +16,7 @@ class MembershipPlan extends Model
         'duration_month', 
         'description',
         'total_class',
+        'is_deleted'
     ];
 
     public function planSubscriptions() {

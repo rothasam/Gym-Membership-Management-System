@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->text('address')->nullable();
             $table->date('joined_date');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();    
         }); 
     }

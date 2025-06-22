@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\class_registerations; 
+use App\Models\ClassRegisteration; 
+use App\Models\Member; 
+use App\Models\GymClass; 
 
 class ClassRegisterController extends Controller
 {
    public function index()
     {
-        $registrations = ClassRegistration::with(['member', 'class'])->latest()->get();
+        $registrations = ClassRegisteration::with(['member', 'class'])->latest()->get();
         return view('class_registrations.index', compact('registrations'));
     }
 
       public function create()
     {
         $members = Member::all();
-        $classes = ClassModel::all();
+        $classes = GymClass::all();
         return view('class_registrations.create', compact('members', 'classes'));
     }
 
@@ -29,7 +31,7 @@ class ClassRegisterController extends Controller
         ]);
 
         // Check if the registration already exists
-        $existingRegistration = ClassRegistration::where('member_id', $validated['member_id'])
+        $existingRegistration = ClassRegisteration::where('member_id', $validated['member_id'])
             ->where('class_id', $validated['class_id'])
             ->first();
 
@@ -37,26 +39,26 @@ class ClassRegisterController extends Controller
             return back()->with('error', 'This member is already registered for this class.');
         }
 
-        ClassRegistration::create($validated);
+        ClassRegisteration::create($validated);
 
         return redirect()->route('class-registrations.index')
                          ->with('success', 'Class registration created successfully.');
     }
 
-      public function show(ClassRegistration $classRegistration)
+      public function show(ClassRegisteration $ClassRegisteration)
     {
-        return view('class_registrations.show', compact('classRegistration'));
+        return view('class_registrations.show', compact('ClassRegisteration'));
     }
 
 
-    public function edit(ClassRegistration $classRegistration)
+    public function edit(ClassRegisteration $ClassRegisteration)
     {
         $members = Member::all();
-        $classes = ClassModel::all();
-        return view('class_registrations.edit', compact('classRegistration', 'members', 'classes'));
+        $classes = GymClass::all();
+        return view('class_registrations.edit', compact('ClassRegisteration', 'members', 'classes'));
     }
 
-    public function update(Request $request, ClassRegistration $classRegistration)
+    public function update(Request $request, ClassRegisteration $ClassRegisteration)
     {
         $validated = $request->validate([
             'member_id' => 'required|exists:members,member_id',
@@ -65,24 +67,24 @@ class ClassRegisterController extends Controller
         ]);
 
         // Check if the registration already exists
-        $existingRegistration = ClassRegistration::where('member_id', $validated['member_id'])
+        $existingRegistration = ClassRegisteration::where('member_id', $validated['member_id'])
             ->where('class_id', $validated['class_id'])
-            ->where('id', '!=', $classRegistration->id)
+            ->where('id', '!=', $ClassRegisteration->id)
             ->first();
 
         if ($existingRegistration) {
             return back()->with('error', 'This member is already registered for this class.');
         }
 
-        $classRegistration->update($validated);
+        $ClassRegisteration->update($validated);
 
         return redirect()->route('class-registrations.index')
                          ->with('success', 'Class registration updated successfully.');
     }
 
-    public function destroy(ClassRegistration $classRegistration)
+    public function destroy(ClassRegisteration $ClassRegisteration)
     {
-        $classRegistration->delete();
+        $ClassRegisteration->delete();
         return redirect()->route('class-registrations.index')
                          ->with('success', 'Class registration deleted successfully.');
     }

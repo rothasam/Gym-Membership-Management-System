@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\daily_attendances;
+use App\Models\DailyAttendance;
 
 class DailyAttendanceController extends Controller
 {
     public function index()
     {
-        $attendances = daily_attendances::all();
+        $attendances = DailyAttendance::all();
         return view('daily_attendance.index', compact('attendances'));
     }
 
@@ -26,22 +26,22 @@ class DailyAttendanceController extends Controller
             'status' => 'required|in:present,absent'
         ]);
 
-        daily_attendances::create($request->all());
+        DailyAttendance::create($request->all());
 
         return redirect()->route('daily_attendance.index')->with('success', 'Attendance recorded successfully!');
     }
 
-    public function show(daily_attendances $attendance)
+    public function show(DailyAttendance $attendance)
     {
         return view('daily_attendance.show', compact('attendance'));
     }
 
-    public function edit(daily_attendances $attendance)
+    public function edit(DailyAttendance $attendance)
     {
         return view('daily_attendance.edit', compact('attendance'));
     }
    
-    public function update(Request $request, daily_attendances $attendance)
+    public function update(Request $request, DailyAttendance $attendance)
     {
         $request->validate([
             'member_id' => 'required|exists:members,id',
@@ -54,7 +54,7 @@ class DailyAttendanceController extends Controller
         return redirect()->route('daily_attendance.index')->with('success', 'Attendance updated successfully!');
     }
 
-    public function destoy(daily_attendances $attendance)
+    public function destoy(DailyAttendance $attendance)
     {
         $attendance->delete();
         return redirect()->route('daily_attendance.index')->with('success', 'Attendance deleted successfully!');

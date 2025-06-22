@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('duration_month');
             $table->text('description')->nullable();
             $table->unsignedTinyInteger('total_class')->nullable();
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

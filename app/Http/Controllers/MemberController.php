@@ -17,33 +17,34 @@ class MemberController extends Controller
     // Store new member
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:50',
-            'last_name' => 'required|string|max:50',
-            'gender' => 'required|in:male,female',
-            'dob' => 'required|date|before_or_equal:today',
-            'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:100|unique:members,email',
-            'address' => 'nullable|string',
-            'joined_date' => 'required|date|after_or_equal:today'
-        ]);
+        // $validated = $request->validate([
+        //     'first_name' => 'required|string|max:50',
+        //     'last_name' => 'required|string|max:50',
+        //     'gender' => 'required|in:male,female',
+        //     'dob' => 'required|date|before_or_equal:today',
+        //     'phone' => 'required|string|max:20',
+        //     'email' => 'required|email|max:100|unique:members,email',
+        //     'address' => 'nullable|string',
+        //     'joined_date' => 'required|date|after_or_equal:today'
+        // ]);
 
-        Member::create($validated);
+        // Member::create($validated);
 
-        return redirect()->route('members.register')
-                         ->with('success', 'Member registered successfully!');
+        // return redirect()->route('members.register')
+        //                  ->with('success', 'Member registered successfully!');
     }
 
     // List all members
     public function index()
     {
-        $members = Member::orderBy('joined_date', 'desc')->paginate(10);
+        $members = Member::all();
         return view('members.index', compact('members'));
     }
 
     // Show single member
     public function show(Member $member)
     {
+
         return view('members.show', compact('member'));
     }
 

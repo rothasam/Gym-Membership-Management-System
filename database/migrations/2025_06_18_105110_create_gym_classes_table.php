@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('total_member');
             $table->time('start_time');
             $table->time('end_time');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }
