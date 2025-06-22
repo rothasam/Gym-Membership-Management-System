@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Class Edit')
-@include('layouts.header')
+@include('partials.header')
 @section('content')
 @include('partials.nav')
 

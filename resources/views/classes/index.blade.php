@@ -3,7 +3,7 @@
 @section('title', 'show Classes')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="container" style="background-color:rgba(255, 255, 255, 0.62);margin:80px auto; padding:80px;border-radius:10px;">

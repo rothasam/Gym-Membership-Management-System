@@ -3,7 +3,7 @@
 @section('title', 'Member Edit')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="d-flex justify-content-center mt-4">

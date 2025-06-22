@@ -3,7 +3,7 @@
 @section('title', 'Attendance')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 @php

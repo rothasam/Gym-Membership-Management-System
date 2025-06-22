@@ -3,7 +3,7 @@
 @section('title', 'Create Membership Plan')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="container my-5">

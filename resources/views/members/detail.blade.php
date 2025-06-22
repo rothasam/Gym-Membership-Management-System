@@ -3,7 +3,7 @@
 @section('title', 'Member Details')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="row g-4 d-flex justify-content-evenly mt-3">

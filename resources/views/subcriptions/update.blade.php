@@ -3,7 +3,7 @@
 @section('title', 'Update Subcription')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="container my-5">

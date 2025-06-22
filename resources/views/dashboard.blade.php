@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-@include('layouts.header')
+@include('partials.header')
 @include('partials.nav')
 
 <div class="container my-5 p-5" style="background-color: rgba(255, 255, 255, 0.62);border-radius:10px;">
