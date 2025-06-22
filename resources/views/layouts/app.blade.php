@@ -10,8 +10,9 @@
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
 
-    <!-- @vite(['resources/css/app.css']); -->
-    @vite(['resources/css/main.css']);
+    <!-- @vite(['resources/css/main.css']); -->
+    @vite(['resources/css/app.css','resources/css/main.css'])
+     <!-- @vite(['resources/css/main.css']) -->
     <style>
         .main-content{
             background: url("{{ asset('images/background.webp') }}") no-repeat center center;
@@ -21,17 +22,19 @@
 
 <body>
 
-    {{-- Header --}}
-
-
-    {{-- Page Content --}}
-    <main class="main-content">
-        <div class="blur">
-            @yield('content')
+    <main class="container-fluid g-0">
+        <div class="row gx-0 ">
+            <div class="col-2">
+                @include('partials.nav')
+            </div>
+            <div class="col-10 bg-primary main-content">
+                @yield('content')
+            </div>
         </div>
     </main>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- @vite(['resources/js/app.js']) -->
     @yield('scripts')
 </body>
 

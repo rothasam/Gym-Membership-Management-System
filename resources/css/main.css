@@ -1,8 +1,8 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 input,
 select {
@@ -25,9 +25,9 @@ select {
 
 .main-content {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
     background-position: center;
-    background: url("{{ asset('images/background.webp') }}") no-repeat center center;
+    /* background: url("{{ asset('images/background.webp') }}") no-repeat center center; */
 }
 
 .blur {
@@ -39,6 +39,7 @@ select {
     background-color: rgba(0, 0, 0, 0.49);
 }
 
+
 label {
     font-size: 20px;
 }
@@ -46,3 +47,48 @@ label {
 input[type="radio"] {
     cursor: pointer;
 }
+
+
+
+/* side bar */
+
+/* html,
+        body {
+            height: 100%;
+            margin: 0;
+        } */
+
+        .sidebar {
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.62);
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .sidebar .nav-link {
+            margin: 2px 0;
+            color: rgb(138, 131, 131);
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            transition: 0.3 linear;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: rgb(240, 14, 101);
+
+            color: #ffffff;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: rgb(240, 14, 101);
+            color: #ffffff;
+        }
+
+        /* .main-content {
+            margin-left: 220px;
+            padding: 2rem;
+        } */

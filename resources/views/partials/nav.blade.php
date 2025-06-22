@@ -1,65 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Layout</title>
-
-    <!-- Bootstrap (optional) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 220px;
-            height: 100vh;
-            background-color: rgba(255, 255, 255, 0.62);
-            padding: 1rem;
-            overflow-y: auto;
-        }
-
-        .sidebar .nav-link {
-            margin: 2px 0;
-            color: rgb(138, 131, 131);
-            border-bottom-left-radius: 10px;
-            border-top-left-radius: 10px;
-            transition: 0.3 linear;
-        }
-
-        .sidebar .nav-link:hover {
-            background-color: rgb(240, 14, 101);
-
-            color: #ffffff;
-        }
-
-        .sidebar .nav-link.active {
-            background-color: rgb(240, 14, 101);
-            color: #ffffff;
-        }
-
-        .main-content {
-            margin-left: 220px;
-            /* same width as sidebar */
-            padding: 2rem;
-        }
-    </style>
-</head>
-
-<body>
-
-    {{-- Sidebar --}}
-    <div class="sidebar">
+ <div class="sidebar w-100 pe-0">
         <h4 class="text-black mb-5">C4FINESS</h4>
         <ul class="nav flex-column ">
             <li class="nav-item">
@@ -106,9 +45,3 @@
             </li>
         </ul>
     </div>
-
-
-
-</body>
-
-</html>

@@ -2,13 +2,11 @@
 
 @section('title', 'Register Member')
 
-@section('styles')
 
-@endsection
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
+
 <!-- style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; -->
 <div class="d-flex justify-content-center mt-4">
 

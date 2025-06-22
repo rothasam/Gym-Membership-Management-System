@@ -4,7 +4,6 @@
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 <div class="container" style="background-color:rgba(255, 255, 255, 0.62);margin:80px auto; padding:80px;border-radius:10px;">
     <h3 class="mb-4">Registered Classes</h3>

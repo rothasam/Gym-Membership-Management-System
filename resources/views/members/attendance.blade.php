@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Attendance')
+@section('title', 'Attendance') 
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 @php
     $members = [

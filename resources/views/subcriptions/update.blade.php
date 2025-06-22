@@ -4,7 +4,6 @@
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 <div class="container my-5">
     <div class="card shadow-sm w-50 mx-auto" style="border-radius: 10px;background-color:rgba(255, 255, 255, 0.62);position:relative;">

@@ -4,7 +4,6 @@
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 <div class="container my-5 p-5" style="background-color: rgba(255, 255, 255, 0.62);border-radius:10px;">
     <h4 class="mb-4">Gym Membership Dashboard</h4>

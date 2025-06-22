@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Class Edit')
-@include('partials.header')
 @section('content')
-@include('partials.nav')
+@include('partials.header')
 
 <div class="container my-5">
     <div class="card shadow-sm w-50 mx-auto" style="background-color:rgba(255, 255, 255, 0.62);">

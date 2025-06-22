@@ -24,7 +24,7 @@ Route::view('/classes/edit', 'classes.edit')->name('classes.edit');
 
 // ================== Membership plan ==================
 Route::view('/plans', 'plans.create')->name('plans.create');
-Route::view('/partials/nav', 'partials.nav')->name('nav');
+// Route::view('/partials/nav', 'partials.nav')->name('nav');
 
 // ================== Plan Subscription ==================
 Route::view('subcriptions/update', 'subcriptions.update')->name('subcriptions.update');

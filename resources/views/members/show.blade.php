@@ -4,7 +4,6 @@
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 
 

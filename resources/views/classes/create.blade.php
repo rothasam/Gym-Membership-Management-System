@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Class Register')
-@include('partials.header')
 @section('content')
-@include('partials.nav')
+@include('partials.header')
 
 <div class="d-flex justify-content-center mt-5">
     <div class="card shadow w-25 mt-5" style="border-radius: 10px;background-color: rgba(255, 255, 255, 0.62);">

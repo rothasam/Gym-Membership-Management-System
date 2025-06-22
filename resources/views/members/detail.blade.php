@@ -4,7 +4,6 @@
 
 @section('content')
 @include('partials.header')
-@include('partials.nav')
 
 <div class="row g-4 d-flex justify-content-evenly mt-3">
     <!-- Member Info Card -->
