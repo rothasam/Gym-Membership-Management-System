@@ -20,6 +20,8 @@ Route::view('/classes', 'classes.index')->name('classes.index');
 Route::view('/classes/create', 'classes.create')->name('classes.create');
 Route::view('/classes/add', 'classes.add')->name('classes.add');
 Route::view('/classes/edit', 'classes.edit')->name('classes.edit');
+Route::view('/classes/show', 'classes.show')->name('classes.show');
+Route::view('classes/update', 'classes.update')->name('classes.update');
 
 
 // ================== Membership plan ==================
