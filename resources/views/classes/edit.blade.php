@@ -10,41 +10,43 @@
             <h5 class="mb-0">Update Class</h5>
         </div>
         <div class="card-body">
-            <form>
+            <form action="{{ route('classes.update', $classes) }}" method="POST">
+                @csrf
+                @method('PUT')
                 {{-- Class Name --}}
                 <div class="mb-3">
-                    <label for="className" class="form-label">Class Name</label>
-                    <input type="text" class="form-control" id="className" placeholder="Enter class name">
+                    <label for="class_name" class="form-label">Class Name</label>
+                    <input type="text" class="form-control" id="class_name" name="class_name" value="{{ $classes->class_name }}" required>
                 </div>
 
                 {{-- Max Members --}}
                 <div class="mb-3">
-                    <label for="maxMembers" class="form-label">Maximum Members</label>
-                    <input type="number" class="form-control" id="maxMembers" placeholder="Enter max number of members">
+                    <label for="total_member" class="form-label">Maximum Members</label>
+                    <input type="number" class="form-control" id="total_member" name="total_member" value="{{ $classes->total_member }}">
                 </div>
 
                 {{-- Start and End Time --}}
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="startTime" class="form-label">Start Time</label>
-                        <input type="time" class="form-control" id="startTime">
+                        <label for="start_time" class="form-label">Start Time</label>
+                        <input type="time" class="form-control" id="start_time" name="start_time" value="{{ $classes->start_time }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="endTime" class="form-label">End Time</label>
-                        <input type="time" class="form-control" id="endTime">
+                        <label for="end_time" class="form-label">End Time</label>
+                        <input type="time" class="form-control" id="end_time" name="end_time" value="{{ $classes->end_time }}">
                     </div>
                 </div>
 
                 {{-- Description --}}
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="3" placeholder="Enter class description (optional)"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ $classes->description }}</textarea>
                 </div>
 
                 {{-- Submit --}}
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-success px-4" style="background-color: rgb(240, 14, 101); border:none;;">
-                        Update
+                    <button type="submit" class="btn px-4 text-light" style="background-color: rgb(240, 14, 101); border:none;">
+                        <i class="fas fa-save me-1"></i> Update
                     </button>
                 </div>
             </form>
