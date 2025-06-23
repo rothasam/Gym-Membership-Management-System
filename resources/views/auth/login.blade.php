@@ -10,19 +10,28 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter Email">
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Enter Password">
             </div>
 
             <div class="d-flex justify-content-center w-100">
                 <button type="submit" class="btn btn-danger w-100">Login</button>
             </div>
         </form>
+        @if($errors->any())
+            <div class="text-danger mt-3">
+                {{ $errors->first() }}
+            </div>
+        @endif
     </div>
 </div>
+
+
+
+
 @endsection
