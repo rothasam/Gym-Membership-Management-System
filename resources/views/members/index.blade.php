@@ -37,7 +37,7 @@
                         <td>2025-06-01</td>
                         <td class="text-center">
                             <a class="text-info me-2 {{ request()->routeIs('members.show') ? 'active' : '' }}" href="{{ route('members.show') }}" title="Preview"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-warning me-2" title="Edit"><i class="fas fa-edit"></i></a>
+                            <a href="{{ route('members.edit') }}" class="text-warning me-2" title="Edit"><i class="fas fa-edit"></i></a>
                             <a href="javascript:void(0);" title="Delete" onclick="showConfirm(this)" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>

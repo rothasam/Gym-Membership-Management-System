@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemebershipPlanController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/',function(){
+    return view('welcome');
+});
 
 Route::view('/auth/login', 'auth.login')->name('login');
 
@@ -31,7 +35,8 @@ Route::view('classes/update', 'classes.update')->name('classes.update');
 
 
 // ================== Membership plan ==================
-Route::view('/plans', 'plans.create')->name('plans.create');
+// Route::view('/plans', 'plans.create')->name('plans.create');
+Route::get('/plans/create',[MemebershipPlanController::class,'create'])->name('plans.create');
 
 
 // ================== Plan Subscription ==================

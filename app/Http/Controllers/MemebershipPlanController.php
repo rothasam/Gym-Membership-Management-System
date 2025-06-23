@@ -15,7 +15,7 @@ class MemebershipPlanController extends Controller
 
     // Display create membership plan provide to user Form 
     public function create() {
-        return view('MembershipPlans.create');
+        return view('plans.create');
     }
 
     // Store new membership plan
@@ -29,17 +29,17 @@ class MemebershipPlanController extends Controller
 
         MembershipPlan::create($request->all());
 
-        return redirect()->route('MembershipPlans.index')->with('success', 'Membership plan created successfully!');
+        return redirect()->route('plans.index')->with('success', 'Membership plan created successfully!');
     }
 
     // Show single membership plan
     public function show(MembershipPlan $plan) {
-        return view('MembershipPlans.show', compact('plan'));
+        return view('plans.show', compact('plan'));
     }
 
     // Edit membership plan form
     public function edit(MembershipPlan $plan) {
-        return view('MembershipPlans.edit', compact('plan'));
+        return view('plans.edit', compact('plan'));
     }
 
     // Update membership plan
@@ -53,11 +53,11 @@ class MemebershipPlanController extends Controller
 
         $plan->update($request->all());
 
-        return redirect()->route('MembershipPlans.index')->with('success', 'Membership plan updated successfully!');
+        return redirect()->route('plans.index')->with('success', 'Membership plan updated successfully!');
     }
 
     public function destroy(MembershipPlan $plan) {
         $plan->delete();
-        return redirect()->route('MembershipPlans.index')->with('success', 'Membership plan deleted successfully!');
+        return redirect()->route('plans.index')->with('success', 'Membership plan deleted successfully!');
     }
 }

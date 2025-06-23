@@ -123,6 +123,7 @@
             </form>
         </div>
     </div>
+    
         <!-- Backdrop -->
     <div id="deleteBackdrop"
         class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-none"
