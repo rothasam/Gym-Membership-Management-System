@@ -48,6 +48,29 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+.admin-btn{
+    background-color:white;
+    border: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 8px;
+    border-radius: 50px;
+    transition: all 0.3s;
+
+    span{
+        font-size: 16px;
+    }
+    &:hover{
+        background-color: rgb(227, 227, 227);
+    }
+    .fa-circle-user{
+        font-size: 30px;
+        margin-top: 1px;
+    }
+
+
+}
 
 
 /* side bar */
@@ -60,13 +83,14 @@ input[type="radio"] {
 
         .sidebar {
             /* position: fixed; */
-            top: 0;
-            left: 0;
-            width: 220px;
+            /* top: 0;
+            left: 0; */
             height: 100vh;
             background-color: rgba(255, 255, 255, 0.62);
-            padding: 1rem;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .sidebar .nav-link {

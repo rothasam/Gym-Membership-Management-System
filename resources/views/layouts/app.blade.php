@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     <title>@yield('title', 'C4FINESS')</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,11 +24,18 @@
 <body>
 
     <main class="container-fluid g-0">
-        <div class="row gx-0 ">
-            <div class="col-2">
-                @include('partials.nav')
-            </div>
-            <div class="col-10 bg-primary main-content">
+        <div class="row gx-0">
+            @php
+                $showSidebar = auth()->check() && !Route::is('login');
+            @endphp
+
+            @if ($showSidebar)
+                <div class="col-2">
+                    @include('partials.nav')
+                </div>
+            @endif
+
+            <div class="{{ $showSidebar ? 'col-10' : 'col-12' }} bg-primary main-content">
                 @yield('content')
             </div>
         </div>
