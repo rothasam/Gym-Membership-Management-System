@@ -3,7 +3,7 @@
         <div class="d-flex flex-column justify-content-between ms-4">
             <div class="d-flex justify-content-start align-items-center py-3 mb-3">
                 <img src="{{ asset('images/logo.png') }}" class="card-img-top" alt="Logo" style="width: 50px; height: 50px;">
-                <span class="fw-bold fs-4 ms-2">G4<span style="color: rgb(240, 14, 101);">FINESS</span> </span>
+                <span class="fw-bold fs-4 ms-2">G4<span style="color: rgb(240, 14, 101);">FITNESS</span> </span>
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">

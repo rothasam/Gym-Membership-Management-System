@@ -5,7 +5,7 @@
 @section('content')
 @include('partials.header')
 
-<div class="container" style="background-color:rgba(255, 255, 255, 0.62);margin:80px auto; padding:80px;border-radius:10px; ">
+<div class="container py-3 px-4 mt-4" style="background-color:rgba(255, 255, 255, 0.62); border-radius:10px; ">
     <h3 class="mb-4">Registered Classes</h3>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -13,28 +13,33 @@
         <div class="col" style="border-radius: 20px;">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <div class="card-footer d-flex justify-content-between">
-                        <span style="font-size:25px;">#{{ $index + 1 }}</span><br>
-                        <a class="btn btn-sm btn-outline-primary" href="{{ route('classes.edit', $class) }}" title="Edit">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <form action="{{ route('classes.destroy', $class) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Delete this class?')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </form>
+                    <div class="card-footer p-0 border-0 d-flex justify-content-between">
+                        <!-- <span class="fs-5">#{{ $index + 1 }}</span><br> -->
+                         <h3 class="card-title" style="color:rgb(240, 14, 101);">{{ $class->class_name }}</h3>
+                        <div class="d-flex gap-2">
+                            <span>
+                                <a  class="btn btn-sm btn-outline-primary" href="{{ route('classes.edit', $class) }}" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </span>
+                            <form action="{{ route('classes.destroy', $class) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Delete this class?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <span class="card-text">
-                        <h1 class="card-title" style="color:rgb(240, 14, 101);">{{ $class->class_name }}</h1>
+                        <!-- <h3 class="card-title" style="color:rgb(240, 14, 101);">{{ $class->class_name }}</h3> -->
                         <span><i class="fas fa-clock me-1 text-muted"></i>
                             {{ date('h:i A', strtotime($class->start_time)) }} 
                             <i class="fas fa-arrow-right"></i>
                             {{ date('h:i A', strtotime($class->end_time)) }}
                         </span><br>
                         <span><i class="fas fa-users me-1 text-muted"></i>Max: {{ $class->total_member }}</span><br>
-                        <p class="mt-2">{{ $class->description }}</p>
+                        <p class="mt-2 text-secondary">{{ $class->description }}</p>
                     </span>
                 </div>
             </div>

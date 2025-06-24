@@ -15,7 +15,7 @@ class PlanSubscription extends Model
         'member_id', 
         'membership_plan_id',
         'start_date',
-        'end date',
+        'end_date',
         'status',
     ];
 
@@ -30,4 +30,6 @@ class PlanSubscription extends Model
     public function payments() {
         return $this->hasMany(Payment::class, 'payment_id', 'payment_id');
     }
+
+    
 }

@@ -13,7 +13,8 @@
             <h4 class="mb-0">Register New Member</h4>
         </div>
         <div class="card-body">
-            <form >
+            <form method="POST" action="{{ route('members.store') }}">
+                @csrf
                 <div class="row">
                     {{-- Column 1 --}}
                     <div class="col-md-8">
@@ -21,18 +22,18 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" placeholder="Enter first name">
+                                <input type="text" name="first_name" class="form-control" placeholder="Enter first name">
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Enter last name">
+                                <input type="text" name="last_name" class="form-control" placeholder="Enter last name">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>Gender</label>
-                                <select class="form-control">
+                                <select name="gender" class="form-control">
                                     <option value="">-- Select --</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -41,29 +42,29 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Date of Birth</label>
-                                <input type="date" class="form-control">
+                                <input name="dob" type="date" class="form-control">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>Phone</label>
-                                <input type="text" class="form-control" placeholder="e.g. 012345678">
+                                <input name="phone" type="text" class="form-control" placeholder="e.g. 012345678">
                             </div>
                             <div class="col-md-6">
                                 <label>Email</label>
-                                <input type="email" class="form-control" placeholder="e.g. example@mail.com">
+                                <input type="email" name="email" class="form-control" placeholder="e.g. example@mail.com">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>Address</label>
-                                <input type="text" class="form-control" placeholder="Enter address">
+                                <input type="text" name="address" class="form-control" placeholder="Enter address">
                             </div>
                             <div class="col-md-6">
                                 <label>Join Date</label>
-                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}">
+                                <input type="date" name="joined_date" class="form-control" value="{{ date('Y-m-d') }}">
                             </div>
                         </div>
                     </div>

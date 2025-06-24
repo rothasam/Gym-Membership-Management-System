@@ -28,33 +28,50 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>012345678</td>
-                        <td>Premium</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                        <td>2025-06-01</td>
-                        <td class="text-center">
-                            <a class="text-info me-2 {{ request()->routeIs('members.show') ? 'active' : '' }}" href="{{ route('members.show') }}" title="Preview"><i class="fas fa-eye"></i></a>
-                            <a href="{{ route('members.edit') }}" class="text-warning me-2" title="Edit"><i class="fas fa-edit"></i></a>
-                            <a href="javascript:void(0);" title="Delete" onclick="showConfirm(this)" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>098765432</td>
-                        <td>Standard</td>
-                        <td><span class="badge bg-secondary">Expired</span></td>
-                        <td>2025-05-21</td>
-                        <td class="text-center">
-                            <a class="text-info me-2 {{ request()->routeIs('members.register') ? 'active' : '' }}" href="{{ route('members.show') }}" title="detail"><i class="fas fa-eye"></i></a>
-                            <a class="text-warning me-2 {{ request()->routeIs('members.edit') ? 'active' : '' }}" href="{{ route('members.edit') }}"><i class="fas fa-edit"></i></a>
-                            <a href="javascript:void(0);" title="Delete" onclick="showConfirm()" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <!-- Add more static rows as needed -->
+                    @foreach ($members as $member)
+                    <!-- class="click-row" data-href="{{ route('members.show', $member->member_id) }}" -->
+                        <tr class="align-middle">
+                            <td>{{ $member->member_id }}</td>
+                            <td>{{ $member->first_name . " ". $member->last_name }}</td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <span>{{ $member->phone}}</span>
+                                    <span>{{ $member->email }}</span>
+                                </div>
+                            </td>
+                            <!-- <td>Plan Name</td>
+                            <td><span class="badge bg-success">Active</span></td> -->
+                            <td>
+                                {{ $member->latestSubscription?->membershipPlan?->name ?? 'No Subscription' }}
+                            </td>
+                            <td>
+                                @php
+                                    $status = $member->latestSubscription?->status ?? null;
+                                @endphp
+
+                                @if ($status === 'active')
+                                    <span class="badge bg-success">Active</span>
+                                @elseif ($status === 'expired')
+                                    <span class="badge bg-secondary">Expired</span>
+                                @elseif ($status === 'cancelled')
+                                    <span class="badge bg-danger">Cancelled</span>
+                                @else
+                                    <span class="badge bg-warning text-dark">No Plan</span>
+                                @endif
+                            </td>
+
+                            <td>{{ $member->joined_date }}</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-primary btn-sm me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fas fa-arrow-up"></i> Upgrade Plan
+                                </button>
+                                <a class="text-info me-2 " href="{{ route('members.show',$member->member_id) }}" title="Preview"><i class="fas fa-eye"></i></a>
+                                <a href="{{ route('members.edit', $member) }}" class="text-warning me-2" title="Edit"><i class="fas fa-edit"></i></a>
+                                <a href="javascript:void(0);" title="Delete" onclick="showConfirm(this)" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                                
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -82,8 +99,96 @@
     </div>
 </div>
 
+
+
+<!-- modal edit -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                <div class="card-body">
+            <form>
+                <!-- Member ID -->
+                <div class="mb-3">
+                    <label class="form-label">Member ID</label>
+                    <!-- You can use input readonly or select dropdown -->
+                    <!-- Readonly input: -->
+                    <input type="text" class="form-control" value="M001" readonly>
+
+                    <!-- Or use dropdown if choosing from list -->
+                    <!--
+                    <select class="form-select">
+                        <option value="">-- Select Member --</option>
+                        <option value="1">M001 - John Doe</option>
+                        <option value="2">M002 - Jane Smith</option>
+                    </select>
+                    -->
+                </div>
+
+                <!-- Plan -->
+                <div class="mb-3">
+                    <label class="form-label">Plan</label>
+                    <select class="form-select">
+                        <option value="">-- Select Plan --</option>
+                        <option value="basic">Basic ($150)</option>
+                        <option value="standard">Standard ($250)</option>
+                        <option value="premium">Premium ($500)</option>
+                    </select>
+                </div>
+
+                <!-- Start Date -->
+                <div class="mb-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <!-- End Date -->
+                <div class="mb-3">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <!-- Status -->
+                <div class="mb-4">
+                    <label class="form-label d-block mb-2">Status</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="active" value="active" checked>
+                        <label class="form-check-label" for="active">Active</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="expired" value="expired">
+                        <label class="form-check-label" for="expired">Expired</label>
+                    </div>
+                </div>
+
+               
+            </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+            <div class="text-end">
+                <button type="submit" class="btn btn-success" style="background-color:rgb(240, 14, 101); border:none;">Update Subscription</button>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('scripts')
 <script src="{{ asset('js/member-show.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".click-row").forEach(function (row) {
+            row.addEventListener("click", function () {
+                window.location.href = this.dataset.href;
+            });
+        });
+    });
+</script>
 @endsection

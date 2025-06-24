@@ -12,7 +12,9 @@
             <h4 class="mb-0">Update</h4>
         </div>
         <div class="card-body">
-            <form>
+           <form action="{{ route('members.update', $member) }}" method="POST" >
+                @method('PUT')
+
                 <div class="row">
                     {{-- Column 1 --}}
                     <div class="col-md-8">
@@ -20,11 +22,11 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" placeholder="Enter first name">
+                                <input type="text" class="form-control" value="{{ $member->first_name }}">
                             </div>
                             <div class="col-md-6">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Enter last name">
+                                <input type="text" class="form-control" value="{{ $member->last_name }}" >
                             </div>
                         </div>
 

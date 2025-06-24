@@ -35,7 +35,7 @@
                 </div>
             @endif
 
-            <div class="{{ $showSidebar ? 'col-10' : 'col-12' }} bg-primary main-content">
+            <div class="{{ $showSidebar ? 'col-10' : 'col-12' }} main-content">
                 @yield('content')
             </div>
         </div>

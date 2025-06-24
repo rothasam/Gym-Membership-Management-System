@@ -71,6 +71,9 @@ input[type="radio"] {
 
 
 }
+tr.click-row{
+    cursor: pointer;
+}
 
 
 /* side bar */
@@ -91,6 +94,7 @@ input[type="radio"] {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 4px 6px -2px #222;
         }
 
         .sidebar .nav-link {

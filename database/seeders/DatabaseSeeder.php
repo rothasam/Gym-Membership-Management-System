@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MembershipPlanSeeder::class,
             GymClassSeeder::class,
             MemberSeeder::class,
+            PlanSubscriptionSeeder::class
         ]);
     }
 }
