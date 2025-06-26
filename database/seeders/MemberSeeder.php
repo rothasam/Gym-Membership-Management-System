@@ -15,17 +15,6 @@ class MemberSeeder extends Seeder
     {
         $members = [
             [
-                'first_name' => 'Sok',
-                'last_name' => 'Dara',
-                'gender' => 'male',
-                'dob' => '2000-05-10',
-                'phone' => '012345678',
-                'email' => 'sok.dara@gmail.com',
-                'address' => 'Phnom Penh, Cambodia',
-                'joined_date' => '2024-01-15',
-                'is_deleted' => 0,
-            ],
-            [
                 'first_name' => 'An',
                 'last_name' => 'Menghour',
                 'gender' => 'male',

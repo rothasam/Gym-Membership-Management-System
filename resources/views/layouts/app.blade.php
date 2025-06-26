@@ -17,8 +17,12 @@
     <style>
         .main-content{
             background: url("{{ asset('images/background.webp') }}") no-repeat center center;
+            height: 100vh;
+            overflow-y: scroll;
         }
+
     </style>
+    
 </head>
 
 <body>

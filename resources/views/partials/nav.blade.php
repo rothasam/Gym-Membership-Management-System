@@ -7,7 +7,7 @@
             </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}" href="{{ route('dashboard.index') }}">
                         <i class="fas fa-tachometer-alt me-2"></i>
                         Dashboard
                     </a>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('members.attendance') ? 'active' : '' }}" href="{{ route('members.attendance') }}">
+                    <a class="nav-link {{ request()->routeIs('') ? 'active' : '' }}" href="{{ route('daily_attendance.index') }}">
                         <i class="fas fa-id-card me-2"></i>
                         Attendance
                     </a>
@@ -52,10 +52,14 @@
 
            
         </div>
-         <div class="px-4">
-            <form method="POST" action="{{ route('logout') }}">
-            @csrf
-                <button class="btn btn-sm btn-outline-danger w-100 mb-4" type="submit">
+        <div class="px-4">
+            <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button 
+                    class="btn btn-sm btn-outline-danger w-100 mb-4" 
+                    type="button"
+                    onclick="if(confirm('Are you sure you want to logout?')) { document.getElementById('logout-form').submit(); }"
+                >
                     <span><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
                     <span>Logout</span>
                 </button>

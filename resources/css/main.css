@@ -75,6 +75,9 @@ tr.click-row{
     cursor: pointer;
 }
 
+.red{
+    color: red;
+}
 
 /* side bar */
 

@@ -8,9 +8,6 @@ use App\Models\GymClass;
 class ClassController extends Controller
 {
     public function index() {
-
-
-        // $classes = GymClass::all();
         $classes = GymClass::where('is_deleted', 0)->get();
         return view('classes.index', compact('classes'));
     }   
@@ -22,18 +19,11 @@ class ClassController extends Controller
     public function create () {
 
         return view('classes.create');
-        // return view('classes.add');
     }
 
     public function store(Request $request) {
-        //  dd($request->all());
         
         $request->validate([
-        //    'class_name' => 'required|string|max:255',
-        //     'description' => 'nullable|string',
-        //     'total_member' => 'nullable|integer',
-        //     'start_time' => 'nullable|date',
-        //     'end_time' => 'nullable|date|after:start_time',
             'class_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'total_member' => 'nullable|integer',

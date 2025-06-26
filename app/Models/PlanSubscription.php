@@ -28,7 +28,7 @@ class PlanSubscription extends Model
     }
 
     public function payments() {
-        return $this->hasMany(Payment::class, 'payment_id', 'payment_id');
+        return $this->hasOne(Payment::class, 'payment_id', 'payment_id');
     }
 
     

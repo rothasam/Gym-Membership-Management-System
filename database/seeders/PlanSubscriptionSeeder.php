@@ -13,7 +13,7 @@ class PlanSubscriptionSeeder extends Seeder
      */
     public function run(): void
     {
-        $subscription = [
+        $subscriptions = [
             [
                 'plan_subscription_id' => 1,
                 'member_id' => 1,
@@ -46,9 +46,26 @@ class PlanSubscriptionSeeder extends Seeder
                 'end_date' => '2026-06-01',
                 'status' => 'expired',
             ],
+            [
+                'plan_subscription_id' => 5,
+                'member_id' => 5,
+                'membership_plan_id' => 1,
+                'start_date' => '2025-04-01',
+                'end_date' => '2025-05-01',
+                'status' => 'active',
+            ],
+            [
+                'plan_subscription_id' => 6,
+                'member_id' => 6,
+                'membership_plan_id' => 2,
+                'start_date' => '2025-05-01',
+                'end_date' => '2025-08-01',
+                'status' => 'active',
+            ],
         ];
 
-        foreach($subscription as $s){
+
+        foreach($subscriptions as $s){
             PlanSubscription::create($s);
         }
     }

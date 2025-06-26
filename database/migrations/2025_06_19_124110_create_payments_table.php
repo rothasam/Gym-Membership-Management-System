@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('payment_method', ['credit_card', 'cash', 'bank_transfer']);
             $table->dateTime('paid_date');
             $table->unsignedInteger('user_id');
-             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

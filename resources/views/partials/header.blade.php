@@ -1,5 +1,5 @@
 @auth
-<div class="d-flex justify-content-between align-items-center px-4 bg-white" style="height: 80px; box-shadow: 0 4px 6px -6px #222;">
+<div class="d-flex justify-content-between align-items-center px-4 bg-white" style="height: 80px; box-shadow: 0 4px 6px -6px #222; position: sticky; top: 0; z-index: 1000;">
     <h3 class="mb-0">Gym Membership Management System</h3>
     <div>
    
