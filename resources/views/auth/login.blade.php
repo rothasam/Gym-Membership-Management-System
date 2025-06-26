@@ -44,6 +44,7 @@
 </div>
 
 
+
 <script>
 function togglePassword() {
     const passwordInput = document.getElementById('password');
@@ -60,4 +61,5 @@ function togglePassword() {
     }
 }
 </script>
+
 @endsection

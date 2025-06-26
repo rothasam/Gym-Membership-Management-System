@@ -76,7 +76,15 @@ Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 // ================== Membership plan ==================
 // Route::view('/plans', 'plans.create')->name('plans.create');
-Route::get('/plans/create',[MemebershipPlanController::class,'create'])->name('plans.create');
+// Membership plan routes
+Route::get('/plans', [MemebershipPlanController::class, 'index'])->name('plans.index');
+Route::get('/plans/create', [MemebershipPlanController::class, 'create'])->name('plans.create');
+Route::post('/plans', [MemebershipPlanController::class, 'store'])->name('plans.store');
+Route::get('/plans/{plan}', [MemebershipPlanController::class, 'show'])->name('plans.show');
+Route::get('/plans/{plan}/edit', [MemebershipPlanController::class, 'edit'])->name('plans.edit');
+Route::put('/plans/{plan}', [MemebershipPlanController::class, 'update'])->name('plans.update');
+Route::delete('/plans/{plan}', [MemebershipPlanController::class, 'destroy'])->name('plans.destroy');
+Route::resource('plans', \App\Http\Controllers\MemebershipPlanController::class);
 
 
 
