@@ -2,61 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\DailyAttendance;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class DailyAttendanceController extends Controller
 {
+
     public function index()
     {
-        $attendances = DailyAttendance::all();
-        return view('daily_attendance.index', compact('attendances'));
+        $today = Carbon::today();
+
+        // Load members with their latest subscription
+        $members = Member::where('is_deleted', false)
+                    ->with(['latestSubscription.membershipPlan'])
+                    ->get();
+
+
+        foreach ($members as $member) {
+            $sub = $member->latestSubscription;
+
+            if ($sub) {
+                // Use end_date to determine expiration
+                $end = Carbon::parse($sub->end_date);
+
+                // Add dynamic properties to the model for view use
+                $member->subscription_status = $end->gte($today) ? 'active' : 'expired';
+                $member->subscription_name = $sub->membershipPlan->name ?? 'N/A';
+                $member->subscription_end = $end->toDateString();
+            } else {
+                $member->subscription_status = 'none';
+                $member->subscription_name = 'No Subscription';
+                $member->subscription_end = 'N/A';
+            }
+        }
+
+        return view('daily_attendance.index', compact('members'));
     }
 
     public function create()
     {
-        return view('daily_attendance.create');
+        // return view('daily_attendance.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        $request->validate([
-            'member_id' => 'required|exists:members,id',
-            'attendance_date' => 'required|date',
-            'status' => 'required|in:present,absent'
+        Log::info('Check-in Request:', $req->all());
+        $attendance = DailyAttendance::create([
+            'member_id' => $req->member_id,
+            'check_in' => now()
         ]);
 
-        DailyAttendance::create($request->all());
-
-        return redirect()->route('daily_attendance.index')->with('success', 'Attendance recorded successfully!');
+        return redirect()->back()->with('success', 'Check-in successful!');
     }
 
-    public function show(DailyAttendance $attendance)
-    {
-        return view('daily_attendance.show', compact('attendance'));
-    }
-
-    public function edit(DailyAttendance $attendance)
-    {
-        return view('daily_attendance.edit', compact('attendance'));
-    }
-   
-    public function update(Request $request, DailyAttendance $attendance)
-    {
-        $request->validate([
-            'member_id' => 'required|exists:members,id',
-            'attendance_date' => 'required|date',
-            'status' => 'required|in:present,absent'
-        ]);
-
-        $attendance->update($request->all());
-
-        return redirect()->route('daily_attendance.index')->with('success', 'Attendance updated successfully!');
-    }
 
     public function destoy(DailyAttendance $attendance)
     {
-        $attendance->delete();
-        return redirect()->route('daily_attendance.index')->with('success', 'Attendance deleted successfully!');
+        // $attendance->delete();
+        // return redirect()->route('daily_attendance.index')->with('success', 'Attendance deleted successfully!');
     }
 }

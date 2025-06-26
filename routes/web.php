@@ -1,38 +1,78 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemebershipPlanController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\DailyAttendanceController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PlanSubscriptionController;
+use App\Models\DailyAttendance;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',function(){
-    return view('welcome');
+
+// ==================  Login ==================
+Route::middleware('guest')->group(function () {
+    Route::get('/', [UserController::class, 'showLoginForm'])->name('login');
+    Route::post('/', [UserController::class, 'login'])->name('login');
 });
 
-Route::view('/auth/login', 'auth.login')->name('login');
+Route::middleware('auth')->group(function () {
+     // ================== Dashboard ==================
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard.index');
+    
+    // ================== Member  ==================
+    Route::prefix('/members')->name('members.')->group(function () {
 
-// ==================  Dashboard ==================
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+        Route::view('attendance', 'members.attendance')->name('attendance');
+
+        Route::get('/', [MemberController::class, 'index'])->name('index');
+        Route::get('/create', [MemberController::class, 'create'])->name('create');
+        Route::post('/', [MemberController::class, 'store'])->name('store');
+        Route::get('{member}', [MemberController::class, 'show'])->name('show');
+        Route::get('edit/{member}', [MemberController::class, 'edit'])->name('edit');
+        Route::put('{member}', [MemberController::class, 'update'])->name('update');
+
+    });
+
+    Route::delete('/members/delete/{member}',[MemberController::class,'destroy'])->name('members.destroy');
+    Route::post('/subscriptions/upgrade', [PlanSubscriptionController::class, 'upgradePlan'])->name('subscriptions.upgrade');
+
+    
+    // ==================  Class ==================
+    Route::prefix('classes')->group(function () {
+        Route::get('/create', [ClassController::class, 'create'])->name('classes.create');
+        Route::get('/', [ClassController::class, 'index'])->name('classes.index');
+        Route::get('/add', [ClassController::class, 'add'])->name('classes.add');
+        Route::post('/store', [ClassController::class, 'store'])->name('classes.store');
+        Route::get('/{classes}', [ClassController::class, 'show'])->name('classes.show');
+        Route::get('/edit/{classes}', [ClassController::class, 'edit'])->name('classes.edit');
+        Route::put('/{classes}', [ClassController::class, 'update'])->name('classes.update');
+        Route::delete('/delete/{classes}', [ClassController::class, 'destroy'])->name('classes.destroy');
+    });    
+
+    // ================== Attendance  ==================
+    Route::get('/daily_attendance', [DailyAttendanceController::class, 'index'])->name('daily_attendance.index');
+    Route::post('/daily_attendance/{id}/check_in',[DailyAttendanceController::class,'store'])->name('daily_attendance.store');
 
 
-// ==================  Member ==================
-Route::view('/members/show',  'members.show')->name('members.show');
-Route::view('/members/edit', 'members.edit')->name('members.edit');
-Route::view('/members/attendance', 'members.attendance')->name('members.attendance');
+    // ================== Membership plan ==================
+    Route::get('/plans/create',[MemebershipPlanController::class,'create'])->name('plans.create');
+
+    // ================== Plan Subscription ==================
+    Route::view('subcriptions/update', 'subcriptions.update')->name('subcriptions.update');
+    
+
+    Route::put('/admin/profile', [UserController::class, 'updateProfile'])->name('admin.update.profile');
+
+    
+});
 
 
-Route::get('/members/create',[MemberController::class,'create'])->name('members.create');
-Route::get('/members', [MemberController::class, 'index'])->name('members.index');
-// Route::get('/members/{member}', [MemberController::class, 'show'])->name('members.show');
+// ==================  Logout ==================
+Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
-
-// ==================  Class ==================
-Route::view('/classes', 'classes.index')->name('classes.index');
-Route::view('/classes/create', 'classes.create')->name('classes.create');
-Route::view('/classes/add', 'classes.add')->name('classes.add');
-Route::view('/classes/edit', 'classes.edit')->name('classes.edit');
-Route::view('/classes/show', 'classes.show')->name('classes.show');
-Route::view('classes/update', 'classes.update')->name('classes.update');
-
+ 
 
 // ================== Membership plan ==================
 // Route::view('/plans', 'plans.create')->name('plans.create');
@@ -47,6 +87,5 @@ Route::delete('/plans/{plan}', [MemebershipPlanController::class, 'destroy'])->n
 Route::resource('plans', \App\Http\Controllers\MemebershipPlanController::class);
 
 
-// ================== Plan Subscription ==================
-Route::view('subcriptions/update', 'subcriptions.update')->name('subcriptions.update');
+
 

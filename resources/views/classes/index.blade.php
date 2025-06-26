@@ -1,42 +1,54 @@
 @extends('layouts.app')
 
-@section('title', 'show Classes')
+@section('title', 'Show Classes')
 
 @section('content')
 @include('partials.header')
 
-<div class="container" style="background-color:rgba(255, 255, 255, 0.62);margin:80px auto; padding:80px;border-radius:10px;">
+<div class="container py-3 px-4 mt-4" style="background-color:rgba(255, 255, 255, 0.62); border-radius:10px; ">
     <h3 class="mb-4">Registered Classes</h3>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{-- Sample class card (repeat this block for each class) --}}
+        @foreach($classes as $index => $class)
         <div class="col" style="border-radius: 20px;">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
-                    <div class="card-footer d-flex justify-content-between">
-                        <span style="font-size:25px;">#1</span><br>
-                        <a class="btn btn-sm btn-outline-primary {{ request()->routeIs('classes.edit') ? 'active' : '' }}" href="{{ route('classes.edit') }}" title="Edit">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <button class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Delete this class?')">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                    <div class="card-footer p-0 border-0 d-flex justify-content-between">
+                        <!-- <span class="fs-5">#{{ $index + 1 }}</span><br> -->
+                         <h3 class="card-title" style="color:rgb(240, 14, 101);">{{ $class->class_name }}</h3>
+                        <div class="d-flex gap-2">
+                            <span>
+                                <a  class="btn btn-sm btn-outline-primary" href="{{ route('classes.edit', $class) }}" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </span>
+                            <form action="{{ route('classes.destroy', $class) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Delete this class?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <span class="card-text">
-
-                        <h1 class="card-title" style="color:rgb(240, 14, 101);">Yoga 01</h1>
-                        <span><i class="fas fa-user me-1 text-muted"></i>Alice Chan</span> <br>
-                        <span><i class="fas fa-clock me-1 text-muted"></i>08:00 AM <i class="fas fa-arrow-right"></i>10:00 AM</span><br>
-                        <span style="font-weight: bold;font-size:20px;">Beginner</span>
+                        <!-- <h3 class="card-title" style="color:rgb(240, 14, 101);">{{ $class->class_name }}</h3> -->
+                        <span><i class="fas fa-clock me-1 text-muted"></i>
+                            {{ date('h:i A', strtotime($class->start_time)) }} 
+                            <i class="fas fa-arrow-right"></i>
+                            {{ date('h:i A', strtotime($class->end_time)) }}
+                        </span><br>
+                        <span><i class="fas fa-users me-1 text-muted"></i>Max: {{ $class->total_member }}</span><br>
+                        <p class="mt-2 text-secondary">{{ $class->description }}</p>
                     </span>
                 </div>
-
             </div>
         </div>
+        @endforeach
 
         {{-- Add New Class Card --}}
-        <div class="col " style="border-radius: 20px;">
-            <a class="text-decoration-none {{ request()->routeIs('classes.add') ? 'active' : '' }}" href="{{ route('classes.add') }}">
+        <div class="col" style="border-radius: 20px;">
+            <a class="text-decoration-none" href="{{ route('classes.add') }}">
                 <div class="card h-100 d-flex justify-content-center align-items-center border-dashed" style="border: 2px dashed #6c757d;">
                     <div class="card-body text-center">
                         <h3 style="color:rgb(240, 14, 101);">Add Class</h3>

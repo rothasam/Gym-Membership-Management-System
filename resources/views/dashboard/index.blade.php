@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Total Members</h6>
-                        <h4 class="mb-0">245</h4> {{-- Replace with dynamic data --}}
+                        <h4 class="mb-0">{{ $t_member }}</h4> {{-- Replace with dynamic data --}}
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Classes</h6>
-                        <h4 class="mb-0">18</h4>
+                        <h4 class="mb-0">{{ $t_class }}</h4>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Staff</h6>
-                        <h4 class="mb-0">12</h4>
+                        <h4 class="mb-0">{{ $t_staff }}</h4>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Total Revenue</h6>
-                        <h4 class="mb-0">$14,300</h4>
+                        <h4 class="mb-0">${{ $t_revenue }}</h4>
                     </div>
                 </div>
             </div>

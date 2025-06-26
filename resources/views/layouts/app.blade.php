@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     <title>@yield('title', 'C4FINESS')</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,24 +17,35 @@
     <style>
         .main-content{
             background: url("{{ asset('images/background.webp') }}") no-repeat center center;
+            height: 100vh;
+            overflow-y: scroll;
         }
+
     </style>
+    
 </head>
 
 <body>
 
     <main class="container-fluid g-0">
-        <div class="row gx-0 ">
-            <div class="col-2">
-                @include('partials.nav')
-            </div>
-            <div class="col-10 bg-primary main-content">
+        <div class="row gx-0">
+            @php
+                $showSidebar = auth()->check() && !Route::is('login');
+            @endphp
+
+            @if ($showSidebar)
+                <div class="col-2">
+                    @include('partials.nav')
+                </div>
+            @endif
+
+            <div class="{{ $showSidebar ? 'col-10' : 'col-12' }} main-content">
                 @yield('content')
             </div>
         </div>
     </main>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- @vite(['resources/js/app.js']) -->
     @yield('scripts')
 </body>

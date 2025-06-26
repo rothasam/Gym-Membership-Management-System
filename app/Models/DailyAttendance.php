@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DailyAttendance extends Model
 {
-    protected $table = 'daily_attedances';
-    protected $primaryKey = 'daily_attedance_id';
+    protected $table = 'daily_attendances';
+    protected $primaryKey = 'daily_attendance_id';
     public $incrementing = true;
 
     protected $fillable = [
         'member_id', 
         'check_in', 
-        'check_out',
         'is_deleted'
     ];
 

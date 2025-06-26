@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('daily_attendances', function (Blueprint $table) {
             $table->mediumIncrements('daily_attendance_id');
             $table->unsignedInteger('member_id');
-            $table->date('check_in');
-            $table->date('check_out');
+            $table->date('check_in')->nullable();
+            // $table->date('check_out')->nullable();
             $table->boolean('is_deleted')->default(false);
              $table->foreign('member_id')->references('member_id')->on('members')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

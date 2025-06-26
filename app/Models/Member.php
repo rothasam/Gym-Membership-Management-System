@@ -27,6 +27,24 @@ class Member extends Model
         return $this->hasMany(PlanSubscription::class, 'member_id', 'member_id');
     }
 
+    public function latestSubscription()
+    {
+        return $this->hasOne(PlanSubscription::class, 'member_id')
+                    ->orderByDesc('created_at'); 
+    }
+
+    public function latestPlan()
+    {
+        return $this->latestSubscription()->with('membershipPlan');
+    }
+
+    // currenly active
+    public function activeSubscription(){
+        return $this->hasOne(PlanSubscription::class, 'member_id')
+                    ->where('status', 'active')
+                    ->orderByDesc('created_at');
+    }
+
     public function dailyAttendances() {
         return $this->hasMany(DailyAttendance::class, 'member_id', 'member_id');
     }
@@ -34,4 +52,12 @@ class Member extends Model
     public function classRegisterations() {
         return $this->hasMany(ClassRegisteration::class, 'member_id', 'member_id');
     }
+
+    
+
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, PlanSubscription::class, 'member_id', 'plan_subscription_id', 'member_id', 'plan_subscription_id');
+    }
+
 }

@@ -7,118 +7,71 @@
 
 <div class="d-flex justify-content-center mt-4">
 
-    <div class=" card shadow-sm w-75" style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; position:relative;">
+    <div class=" card shadow-sm" style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; position:relative;">
         <div class="card-header text-light" style="background-color: rgb(240, 14, 101);">
             <h4 class="mb-0">Update</h4>
         </div>
         <div class="card-body">
-            <form>
-                <div class="row">
-                    {{-- Column 1 --}}
-                    <div class="col-md-8">
-                        <h1 class=" text-center">Information</h1>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" placeholder="Enter first name">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Enter last name">
-                            </div>
-                        </div>
+          <form action="{{ route('members.update', $member) }}" method="POST">
+    @csrf
+    @method('PUT')
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Gender</label>
-                                <select class="form-control">
-                                    <option value="">-- Select --</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Date of Birth</label>
-                                <input type="date" class="form-control">
-                            </div>
-                        </div>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Information</h1>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                                <input type="text" class="form-control" placeholder="e.g. 012345678">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Email</label>
-                                <input type="email" class="form-control" placeholder="e.g. example@mail.com">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                                <input type="text" class="form-control" placeholder="Enter address">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Join Date</label>
-                                <input type="date" class="form-control" value="{{ date('Y-m-d') }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Column 2 --}}
-                    <div class="col-md-4">
-                        <h1 class=" text-center">Plan</h1>
-                        <div class="mb-3">
-                            <label>Plan</label>
-                            <input type="text" class="form-control" id="plan-select" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label>Price</label>
-                            <input type="text" class="form-control" id="plan-price" readonly>
-                        </div>
-                        <div class="mb-3 text-center " style="margin-top:50px;">
-                            <a class="btn btn-primary {{ request()->routeIs('subcriptions.update') ? 'active' : '' }}" href="{{ route('subcriptions.update') }}" style="background-color:rgb(240, 14, 101); border:none;">{{--{{ route('plans.upgrade', ['member_id' => 1]) }}--}}
-                            <i class="fas fa-arrow-up"></i> Upgrade Plan</a>
-                        </div>
-                        {{-- <div class="mb-3">
-                            <label class="form-label mb-2">Payment Method</label>
-
-                            <div class="form-check d-flex mb-4 align-items-center justify-content-evenly w-75" style="background-color: #ffffff;padding-right:80px;border-radius:10px;">
-                                <input class="form-check-input" type="radio" name="payment_method" id="payment_cash" value="cash" checked>
-                                <label class="form-check-label" for="payment_cash">
-                                    <span style="padding:10px;display:inline-block;margin:2px;">Cash</span>
-                                    <i class=" fas fa-money-bill-wave me-2 text-success" style="font-size: 25px;"></i>
-                                </label>
-                            </div>
-
-                            <div class="form-check d-flex align-items-center justify-content-evenly w-75" style="background-color: #ffffff;margin:2px 0;border-radius:10px;">
-                                <input class="form-check-input" type="radio" name="payment_method" id="payment_aba" value="aba_pay">
-                                <label class="form-check-label d-flex align-items-center" for="payment_aba" style="font-weight: bold;">
-                                    <span style="padding:10px;display:inline-block;margin:2px;">
-                                        ABA
-                                        <span style="font-size: small;">
-                                            ABA'
-                                            <span style="font-weight: bold;">
-                                                Pay
-                                                <span style="color:#5F5AF0;">way</span>
-                                            </span>
-                                            <i class="fas fa-university me-2 text-primary " style="font-size: 25px;"></i>
-                                        </span>
-                                    </span>
-                                </label>
-                            </div>
-
-
-                        </div> --}}
-                    </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>First Name</label>
+                    <input type="text" name="first_name" class="form-control" value="{{ $member->first_name }}">
                 </div>
-
-                <div class="mt-4 text-end">
-                    <button type="submit" class="btn btn-success px-4" style="background-color: rgb(240, 14, 101); border:none;">Update</button>
+                <div class="col-md-6">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name" class="form-control" value="{{ $member->last_name }}">
                 </div>
-            </form>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Gender</label>
+                    <select name="gender" class="form-control">
+                        <option value="">-- Select --</option>
+                        <option value="male" {{ $member->gender == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ $member->gender == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="other" {{ $member->gender == 'other' ? 'selected' : '' }}>Other</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dob" class="form-control" value="{{ $member->dob }}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Phone</label>
+                    <input type="text" name="phone" class="form-control" value="{{ $member->phone }}">
+                </div>
+                <div class="col-md-6">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" value="{{ $member->email }}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label>Address</label>
+                    <input type="text" name="address" class="form-control" value="{{ $member->address }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 text-end">
+        <button type="submit" class="btn btn-success px-4" style="background-color: rgb(240, 14, 101); border:none;">Update</button>
+    </div>
+</form>
+
         </div>
     </div>
     <!-- Backdrop -->
