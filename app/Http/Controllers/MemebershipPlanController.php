@@ -8,7 +8,6 @@ use App\Models\MembershipPlan;
 class MemebershipPlanController extends Controller
 {
 
-<<<<<<< Davin240
    // In MemebershipPlanController.php
 public function index() {
     $plans = MembershipPlan::where('is_deleted', false)->get();
@@ -17,12 +16,6 @@ public function index() {
             
 
     // Display create membership plan form
-=======
-    public function index() {
-        return view('MembershipPlans.index');
-    }
-    // Display create membership plan provide to user Form 
->>>>>>> main
     public function create() {
         return view('plans.create');
     }
