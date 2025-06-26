@@ -8,12 +8,14 @@ use App\Models\MembershipPlan;
 class MemebershipPlanController extends Controller
 {
 
-    // Display membership plans index page
-    public function index() {
-        return view('MembershipPlans.index');
-    }
+   // In MemebershipPlanController.php
+public function index() {
+    $plans = MembershipPlan::where('is_deleted', false)->get();
+    return view('plans.index', compact('plans')); // Changed from 'members.create' to 'plans.index'
+}
+            
 
-    // Display create membership plan provide to user Form 
+    // Display create membership plan form
     public function create() {
         return view('plans.create');
     }
@@ -21,13 +23,21 @@ class MemebershipPlanController extends Controller
     // Store new membership plan
     public function store(Request $request) {
         $request->validate([
-            'plan_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'duration' => 'required|integer|min:1', // Duration in months
+            'duration_month' => 'required|integer|min:1',
+            'total_class' => 'nullable|integer|min:0',
         ]);
 
-        MembershipPlan::create($request->all());
+        MembershipPlan::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration_month' => $request->duration_month,
+            'total_class' => $request->total_class,
+            'is_deleted' => false
+        ]);
 
         return redirect()->route('plans.index')->with('success', 'Membership plan created successfully!');
     }
@@ -45,10 +55,11 @@ class MemebershipPlanController extends Controller
     // Update membership plan
     public function update(Request $request, MembershipPlan $plan) {
         $request->validate([
-            'plan_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'duration' => 'required|integer|min:1',
+            'duration_month' => 'required|integer|min:1',
+            'total_class' => 'nullable|integer|min:0',
         ]);
 
         $plan->update($request->all());
@@ -57,7 +68,8 @@ class MemebershipPlanController extends Controller
     }
 
     public function destroy(MembershipPlan $plan) {
-        $plan->delete();
+        $plan->update(['is_deleted' => true]);
         return redirect()->route('plans.index')->with('success', 'Membership plan deleted successfully!');
     }
+    
 }
