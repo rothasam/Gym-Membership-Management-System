@@ -18,14 +18,14 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string',
         ]);
 
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return back()->withErrors([
-                'email' => 'Invalid email or password.',
+                'auth' => 'Invalid email or password.',
             ]);
         }
 

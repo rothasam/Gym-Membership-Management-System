@@ -19,32 +19,33 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('members.index') ? 'active' : '' }}" href="{{ route('members.index') }}">
-                        <i class="fas fas fa-user me-2"></i>
-                        Member
+                    <a class="nav-link {{ request()->routeIs('members.index', 'members.show', 'members.edit') ? 'active' : '' }}" href="{{ route('members.index') }}">
+                            <i class="fas fa-user me-2"></i>
+                            Member Management
+                        </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('classes.index','classes.edit','classes.add') ? 'active' : '' }}" href="{{ route('classes.index') }}">
+                        <i class="fas fa-book-open me-2"></i>
+                        Class Management
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('classes.index') ? 'active' : '' }}" href="{{ route('classes.index') }}">
-                        <i class="fas fa-calendar-alt me-2"></i>
-                        Class
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('classes.create') ? 'active' : '' }}" href="{{ route('classes.create') }}">
+                    <a class="nav-link {{ request()->routeIs('class_register.register') ? 'active' : '' }}" href="{{ route('class_register.register') }}">
                         <i class="fas fa-edit me-2"></i>
                         Class Register
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('plans.create') ? 'active' : '' }}" href="{{ route('plans.create') }}">
+                    <a class="nav-link {{ request()->routeIs('plans.index','plans.edit','plans.create') ? 'active' : '' }}" href="{{ route('plans.index') }}">
                         <i class="fas fa-id-card me-2"></i>
                         Membership Plan
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('') ? 'active' : '' }}" href="{{ route('daily_attendance.index') }}">
-                        <i class="fas fa-id-card me-2"></i>
+                    <a class="nav-link {{ request()->routeIs('daily_attendance.index') ? 'active' : '' }}" href="{{ route('daily_attendance.index') }}">
+                        <i class="fas fa-users me-2"></i>
                         Attendance
                     </a>
                 </li>

@@ -27,8 +27,8 @@ class PlanSubscriptionSeeder extends Seeder
                 'member_id' => 2,
                 'membership_plan_id' => 2,
                 'start_date' => '2025-02-15',
-                'end_date' => '2025-05-15',
-                'status' => 'expired',
+                'end_date' => now(),
+                'status' => 'active',
             ],
             [
                 'plan_subscription_id' => 3,
@@ -44,7 +44,7 @@ class PlanSubscriptionSeeder extends Seeder
                 'membership_plan_id' => 4,
                 'start_date' => '2025-06-01',
                 'end_date' => '2026-06-01',
-                'status' => 'expired',
+                'status' => 'active',
             ],
             [
                 'plan_subscription_id' => 5,

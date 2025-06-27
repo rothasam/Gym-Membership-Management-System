@@ -17,34 +17,26 @@ class DailyAttendanceController extends Controller
 
         // Load members with their latest subscription
         $members = Member::where('is_deleted', false)
-                    ->with(['latestSubscription.membershipPlan'])
-                    ->get();
+            ->with(['latestSubscription.membershipPlan'])
+            ->get()
+            ->filter(function ($member) use ($today) {
+                $sub = $member->latestSubscription;
 
+                // Keep only if subscription exists and is still active
+                return $sub && Carbon::parse($sub->end_date)->gte($today);
+            });
 
+        // add extra properties for use in the view (optional)
         foreach ($members as $member) {
             $sub = $member->latestSubscription;
+            $end = Carbon::parse($sub->end_date);
 
-            if ($sub) {
-                // Use end_date to determine expiration
-                $end = Carbon::parse($sub->end_date);
-
-                // Add dynamic properties to the model for view use
-                $member->subscription_status = $end->gte($today) ? 'active' : 'expired';
-                $member->subscription_name = $sub->membershipPlan->name ?? 'N/A';
-                $member->subscription_end = $end->toDateString();
-            } else {
-                $member->subscription_status = 'none';
-                $member->subscription_name = 'No Subscription';
-                $member->subscription_end = 'N/A';
-            }
+            $member->status = 'active';
+            $member->plan_name = $sub->membershipPlan->name ?? 'N/A';
+            $member->end_date = $end->toDateString();
         }
 
         return view('daily_attendance.index', compact('members'));
-    }
-
-    public function create()
-    {
-        // return view('daily_attendance.create');
     }
 
     public function store(Request $req)
@@ -55,13 +47,9 @@ class DailyAttendanceController extends Controller
             'check_in' => now()
         ]);
 
-        return redirect()->back()->with('success', 'Check-in successful!');
+        return redirect()->back()->with('success', 'Attendance submitted successfully!');
+
     }
 
 
-    public function destoy(DailyAttendance $attendance)
-    {
-        // $attendance->delete();
-        // return redirect()->route('daily_attendance.index')->with('success', 'Attendance deleted successfully!');
-    }
 }

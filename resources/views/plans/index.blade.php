@@ -6,10 +6,10 @@
 @include('partials.header')
 
 <div class="container my-5">
-     <div class="card shadow-sm w-320 mx-auto" style="background-color:rgba(255, 255, 255, 0.62);">
+     <div class="card shadow-sm p-4 mx-auto" style="background-color:rgba(255, 255, 255, 0.62);">
   
           <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Membership Plans</h2>
+        <h2><i class="fas fa-id-card me-2 textPrimary"></i>Membership Plans</h2>
         <a href="{{ route('plans.create') }}" class="btn btn-primary" style="background-color: rgb(240, 14, 101); border: none;">
             <i class="fas fa-plus"></i> Create New Plan
         </a>

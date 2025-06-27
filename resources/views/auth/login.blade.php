@@ -11,35 +11,68 @@
         </div>
         
         <h5 class="mb-4 text-center">Welcome back to G4FINESS</h5>
-        
-        <form method="POST" action="{{ route('login') }}">
+        @if ($errors->has('auth'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        {{ $errors->first('auth') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+       <form method="POST" action="{{ route('login') }}" class="p-4 border rounded shadow-sm bg-white" style="max-width: 400px; margin: auto;">
             @csrf
 
-            <div class="mb-3">
+
+            <div class="mb-3 position-relative">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                       value="{{ old('email', 'admin@gmail.com') }}" 
-                       id="email" name="email" placeholder="user@example.com">
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                
-                <div class="position-relative">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror pe-5" 
-                        value="{{ old('password', 'admin@123') }}" 
-                        id="password" name="password" placeholder="password">
-                    
-                    <span class="position-absolute top-50 translate-middle-y end-0 me-3" style="cursor: pointer;" onclick="togglePassword()">
-                        <i class="fa-solid fa-eye-slash" id="togglePasswordIcon"></i>
-                    </span>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-envelope text-muted"></i></span>
+                    {{-- @error('email') is-invalid @enderror --}}
+                    <input
+                        type="email"
+                        class="form-control "
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        value="{{ old('email', 'admin@gmail.com') }}"
+                        required
+                    >
                 </div>
+                {{-- 
+                @error('email')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror 
+                --}}
             </div>
 
-            <div class="d-flex justify-content-center w-100 mt-4">
-                <button type="submit" class="btn btn-danger w-100">Login</button>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-lock text-muted"></i></span>
+                    <input
+                        type="password"
+                        class="form-control @error('password') is-invalid @enderror"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        value="admin@123"
+                        required
+                    >
+                    <button class="btn btn-outline-secondary" \ type="button" onclick="togglePassword()" tabindex="-1">
+                        <i class="fas fa-eye-slash" id="togglePasswordIcon"></i>
+                    </button>
+                </div>
+                @error('password')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-sign-in-alt me-1"></i> Login
+                </button>
             </div>
         </form>
+
     </div>
 </div>
 

@@ -38,7 +38,7 @@ class MemberController extends Controller
             'gender' => 'required|in:male,female,none',
             'dob' => 'required|date',
             'phone' => 'required|string|max:20',
-            'email' => 'nullable|email|unique:members,email',
+            'email' => 'required|email|unique:members,email',
             'address' => 'nullable|string',
             'is_deleted' => 'nullable',
             'membership_plan_id' => 'required|exists:membership_plans,membership_plan_id',
@@ -105,12 +105,29 @@ class MemberController extends Controller
 
 
 
-    public function index()
+
+    public function index(Request $req)
     {
-        $members = Member::all()->where('is_deleted',false);
-        $plans = MembershipPlan::all(); 
-        return view('members.index', compact('members','plans'));
+        $search = $req->input('search');
+        
+        $query = Member::where('is_deleted', false);
+
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('first_name', 'like', "%{$search}%")
+                ->orWhere('last_name', 'like', "%{$search}%")
+                ->orWhere('member_id', 'like', "%{$search}%");
+            });
+        }
+
+        // Use pagination instead of get() to improve performance
+        $members = $query->paginate(10)->withQueryString(); 
+
+        $plans = MembershipPlan::all();
+
+        return view('members.index', compact('members', 'plans', 'search'));
     }
+
 
     // Show single member
     public function show(Member $member)
@@ -118,13 +135,9 @@ class MemberController extends Controller
         $member->load([
             'planSubscriptions.membershipPlan',
             'payments.user',
-            'dailyAttendances'
+            'dailyAttendances',
+            'classRegisterations.gymClass'
         ]);
-
-        // $latestSubscription = $member->planSubscriptions()
-        //     ->latest('start_date')  // or 'plan_subscription_id' if it's auto-increment
-        //     ->with('membershipPlan')
-        //     ->first();
 
         $latestPayment = Payment::whereHas('planSubscription', function ($query) use ($member) {
             $query->where('member_id', $member->member_id);

@@ -33,11 +33,6 @@ class Member extends Model
                     ->orderByDesc('created_at'); 
     }
 
-    public function latestPlan()
-    {
-        return $this->latestSubscription()->with('membershipPlan');
-    }
-
     // currenly active
     public function activeSubscription(){
         return $this->hasOne(PlanSubscription::class, 'member_id')
@@ -50,7 +45,7 @@ class Member extends Model
     }
 
     public function classRegisterations() {
-        return $this->hasMany(ClassRegisteration::class, 'member_id', 'member_id');
+        return $this->hasMany(ClassRegisteration::class, 'member_id', 'member_id')->where('is_deleted',false);
     }
 
     

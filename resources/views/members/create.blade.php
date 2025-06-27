@@ -5,169 +5,145 @@
 @section('content')
 @include('partials.header')
 
-<!-- style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; -->
 <div class="d-flex justify-content-center mt-2">
 
-    <div class=" card shadow-sm w-75" style="margin:50px auto; background-color:rgba(255, 255, 255, 0.62); border-radius: 10px ; position:relative;">
-        <div class="card-header text-light" style="background-color: rgb(240, 14, 101);">
-            <h4 class="mb-0">Register New Member</h4>
+   <div class="container py-5">
+    <div class="card shadow border-0 mx-auto" style="max-width: 1100px; background-color:rgba(255, 255, 255, 0.62); border-radius: 12px;">
+        <div class="card-header  text-white rounded-top" style="background-color: rgb(240, 14, 101);">
+            <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i> Register New Member</h4>
         </div>
-        <div class="card-body">
-                <form method="POST" action="{{ route('members.store') }}" id="frmRegister">
+
+        <div class="card-body px-4 py-4">
+            <form method="POST" action="{{ route('members.store') }}" id="frmRegister">
                 @csrf
-                <div class="row">
-                    {{-- Column 1 --}}
-                    <div class="col-md-8 pe-4" style="border-right: 2px solid #ddd;">
-                        <h1 class=" text-center">Information</h1>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>First Name<span class="red">*</span></label>
-                                 <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" placeholder="Enter first name" >
-                                @error('first_name')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                <div class="row g-4">
 
+                    {{-- Column 1: Member Info --}}
+                    <div class="col-md-8 border-end">
+                        <h5 class="text-primary mb-4"><i class="fas fa-info-circle me-2"></i> Member Information</h5>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">First Name <span class="red">*</span></label>
+                                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" placeholder="First Name">
+                                @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-md-6">
-                                <label>Last Name<span class="red">*</span></label>
-                                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="Enter last name">
-                                @error('last_name')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                <label class="form-label fw-semibold">Last Name <span class="red">*</span></label>
+                                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" placeholder="Last Name">
+                                @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label>Gender<span class="red">*</span></label>
-                                <select name="gender" class="form-control @error('gender') is-invalid @enderror">
-                                    <option value="">-- Select --</option>
+                                <label class="form-label fw-semibold">Gender <span class="red">*</span></label>
+                                <select name="gender" class="form-select @error('gender') is-invalid @enderror">
+                                    <option value="">-- Select Gender --</option>
                                     <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                                    <option value="male" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                                    <option value="male" {{ old('gender') == 'none' ? 'selected' : '' }}>None</option>
+                                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+                                    <option value="none" {{ old('gender') == 'none' ? 'selected' : '' }}>None</option>
                                 </select>
-                                 @error('gender')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                @error('gender') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-                            <div class="col-md-6">
-                                <label>Date of Birth<span class="red">*</span></label>
-                                <input name="dob" type="date" class="form-control @error('dob') is-invalid @enderror" value="{{ old('dob') }}">
-                                @error('dob')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label>Phone<span class="red">*</span></label>
-                                <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="e.g. 012345678">
-                                @error('phone')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                <label class="form-label fw-semibold">Date of Birth <span class="red">*</span></label>
+                                <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" value="{{ old('dob') }}">
+                                @error('dob') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
+
                             <div class="col-md-6">
-                                <label>Email</label>
+                                <label class="form-label fw-semibold">Phone <span class="red">*</span></label>
+                                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="e.g. 012345678">
+                                @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Email <span class="red">*</span></label>
                                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="e.g. example@mail.com">
-                                @error('email')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
+                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label>Address</label>
-                                <input type="text" name="address" class="form-control" placeholder="Enter address">
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="Street, City, etc.">
                             </div>
                         </div>
                     </div>
 
-                    {{-- Column 2 --}}
-                    <div class="col-md-4 ps-4">
-                        <h1 class=" text-center">Plan</h1>
+                    {{-- Column 2: Plan --}}
+                    <div class="col-md-4">
+                        <h5 class="text-primary mb-4"><i class="fas fa-dumbbell me-2"></i> Membership Plan</h5>
+
                         <div class="mb-3">
-                            <label>Choose Plan<span class="red">*</span></label>
-                            <select class="form-control @error('membership_plan_id') is-invalid @enderror" id="plan-select" name="membership_plan_id" >
+                            <label class="form-label fw-semibold">Choose Plan <span class="red">*</span></label>
+                            <select class="form-select @error('membership_plan_id') is-invalid @enderror" name="membership_plan_id" id="plan-select">
                                 <option value="">-- Select Plan --</option>
                                 @foreach($plans as $plan)
-                                    <option value="{{ $plan->membership_plan_id }}" data-price="{{ $plan->price }}">{{ $plan->name . ' / $' . $plan->price }}</option>
+                                    <option 
+                                        value="{{ $plan->membership_plan_id }}" 
+                                        data-price="{{ $plan->price }}" 
+                                        data-duration="{{ $plan->duration_month }}">
+                                        {{ $plan->name . ' / $' . $plan->price }}
+                                    </option>
                                 @endforeach
+
                             </select>
-                             @error('membership_plan_id')
-                                    <small class="text-danger">The plan field is required</small>
-                                @enderror
+                            @error('membership_plan_id') <div class="invalid-feedback">Please select a plan.</div> @enderror
+                        </div>
+
+                        <div class="mb-3">
+                          
+                            {{-- <label class="form-label fw-semibold">Total Price</label> --}}
+                            <input type="hidden" id="plan-price" class="form-control" readonly placeholder="$0.00">
+                          
+                            <input type="hidden" name="price" id="plan-price-hidden">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Start Date <span class="red">*</span></label>
+                            <input type="date" name="start_date" class="form-control @error('start_date') is-invalid @enderror">
+                            @error('start_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-3">
-                            <label>Total Price</label>
-                            <input type="text" class="form-control mb-2" id="plan-price" readonly placeholder="$0.00">
-                            <input type="hidden" name="price" id="plan-price-hidden">
-                            
+                            <label class="form-label fw-semibold">End Date</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" readonly placeholder="Auto calculated">
                         </div>
-                        <div class="">
-                            <label>Start Date<span class="red">*</span></label>
-                            <input type="date" class="form-control @error('start_date') is-invalid @enderror"  name="start_date" >
-                            @error('start_date')
-                                <small class="text-danger d-block">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col-md-12">
-                            <label class="form-label mb-2">Payment Method<span class="red">*</span></label>
-                                <br>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold mb-2">Payment Method <span class="red">*</span></label> <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('payment_method') is-invalid @enderror" type="radio" name="payment_method" id="payment_cash" value="cash" checked >
+                                <input class="form-check-input @error('payment_method') is-invalid @enderror" type="radio" name="payment_method" id="payment_cash" value="cash" checked>
                                 <label class="form-check-label" for="payment_cash">
-                                    <i class="fas fa-money-bill-wave text-success me-1"></i> Cash
+                                    <i class="fas fa-money-bill text-success me-1"></i> Cash
                                 </label>
                             </div>
-
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('payment_method') is-invalid @enderror" type="radio" name="payment_method" id="payment_bank" value="bank_transfer" {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }} >
+                                <input class="form-check-input @error('payment_method') is-invalid @enderror" type="radio" name="payment_method" id="payment_bank" value="bank_transfer" {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="payment_bank">
-                                    <i class="fas fa-university text-primary me-1"></i> Bank Payment
+                                    <i class="fas fa-university text-primary me-1"></i> Bank Transfer
                                 </label>
                             </div>
-
-                            @error('payment_method')
-                                <small class="text-danger d-block">{{ $message }}</small>
-                            @enderror
+                            @error('payment_method') <div class="invalid-feedback d-block">{{ $message }}</div> @enderror
                         </div>
                     </div>
-                    
                 </div>
 
-                <div class="mt-4 text-end">
-                    <button type="button" class="btn btn-secondary" id="btnClearForm">
-                        Clear <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
+                {{-- Form Buttons --}}
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" id="btnClearForm">
+                        <i class="fas fa-redo me-1"></i> Clear
                     </button>
-                    <button type="submit" class="btn text-white"  style="background-color: rgb(240, 14, 101); border:none;">
-                        Register
+                    <button type="submit" class="btn text-white" style="background-color: rgb(240, 14, 101);">
+                        <i class="fas fa-user-plus me-1"></i> Register
                     </button>
                 </div>
             </form>
         </div>
     </div>
-    
-        <!-- Backdrop -->
-    <div id="deleteBackdrop"
-        class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-none"
-        style="z-index: 1040;">
-    </div>
-    <!-- Success Message Card (Hidden Initially) -->
-    <div id="successCard" class="card shadow-sm w-25 mx-auto h-50 d-none" style="background-color:#ffffff;position:absolute; z-index:1041;">
-        <div class="card-body">
-            <div class="card-header h-25 d-flex flex-column justify-content-center align-items-center p-4" style="background-color: rgb(235, 30, 108);">
-                <div><i class="fas fa-check-circle text-center text-light" style="font-size: 70px;"></i></div>
-                <h4 class="card-title text-success mb-2 text-light">Success</h4>
-            </div>
-            <p class="card-text p-3 text-center">Congradulation, your account has been sucsessfully Created</p>
-            <div class="d-flex justify-content-center mt-4">
-                <button class="btn btn-success px-3">Continue</button>
-            </div>
+</div>
 
-        </div>
-    </div>
+    
+
 </div>
 
 
@@ -215,8 +191,6 @@
                         </div>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
          <button type="button" class="btn btn-primary" id="confirmPayment">Confirm & Register</button>
       </div>
     </div>
@@ -255,6 +229,34 @@
                 modal.hide();
                 document.getElementById('frmRegister').submit();
             });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const planSelect = document.getElementById('plan-select');
+            const startDate = document.querySelector('[name="start_date"]');
+            const endDate = document.getElementById('end_date');
+
+            function calculateEndDate() {
+                const selectedOption = planSelect.options[planSelect.selectedIndex];
+                const duration = selectedOption?.getAttribute("data-duration"); // Make sure duration is set in option
+                const start = startDate.value;
+
+                if (start && duration) {
+                    const date = new Date(start);
+                    date.setMonth(date.getMonth() + parseInt(duration));
+
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0');
+                    const dd = String(date.getDate()).padStart(2, '0');
+
+                    endDate.value = `${yyyy}-${mm}-${dd}`;
+                } else {
+                    endDate.value = '';
+                }
+            }
+
+            planSelect.addEventListener("change", calculateEndDate);
+            startDate.addEventListener("change", calculateEndDate);
         });
 
 

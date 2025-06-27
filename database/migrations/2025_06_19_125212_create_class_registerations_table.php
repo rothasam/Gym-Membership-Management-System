@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('gym_class_id');
             $table->foreign('member_id')->references('member_id')->on('members')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('gym_class_id')->references('gym_class_id')->on('gym_classes')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('registered_date');
+            $table->timestamp('registered_date');
             $table->boolean('is_deleted')->default(false);
         });
     }
