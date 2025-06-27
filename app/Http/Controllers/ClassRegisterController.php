@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+
 class ClassRegisterController extends Controller
 {
 
@@ -83,7 +84,7 @@ public function store(Request $request)
 
     // Pre-check all classes
     foreach ($classIds as $classId) {
-        $class = \App\Models\GymClass::find($classId);
+        $class = GymClass::find($classId);
         if (!$class) {
             return back()->withErrors(['error' => "Class ID $classId not found."]);
         }
