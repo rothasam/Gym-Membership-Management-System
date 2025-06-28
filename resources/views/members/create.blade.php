@@ -15,6 +15,9 @@
 
         <div class="card-body px-4 py-4">
             <form method="POST" action="{{ route('members.store') }}" id="frmRegister">
+                @auth
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->user_id }}">
+                @endauth
                 @csrf
                 <div class="row g-4">
 

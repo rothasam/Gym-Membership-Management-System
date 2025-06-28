@@ -154,6 +154,11 @@
 
       <div class="modal-body px-4 py-2">
         <form id="subscriptionForm" method="POST" action="{{ route('subscriptions.upgrade') }}">
+
+         @auth
+              <input type="hidden" name="user_id" value="{{ auth()->user()->user_id }}">
+          @endauth
+
           @csrf
           <div class="row g-3">
             

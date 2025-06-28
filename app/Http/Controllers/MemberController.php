@@ -29,7 +29,7 @@ class MemberController extends Controller
         // Log basic validated input
         Log::info('Validated request: ' . json_encode($req->only([
             'first_name', 'last_name', 'gender', 'dob', 'phone', 'email', 'address',
-            'membership_plan_id', 'start_date', 'price', 'payment_method'
+            'membership_plan_id', 'start_date', 'price', 'payment_method', 'user_id'
         ])));
 
         $req->validate([
@@ -88,7 +88,7 @@ class MemberController extends Controller
                     'amount' => $req->price,
                     'payment_method' => $req->payment_method,
                     'paid_date' => now(),
-                    'user_id' => 1, // temporary/test user
+                    'user_id' => $req->user_id,  //  use this auth()->user()->user_id but error
                 ]);
                 // Log::info('Payment created with ID: ' . $payment->payment_id);
             });

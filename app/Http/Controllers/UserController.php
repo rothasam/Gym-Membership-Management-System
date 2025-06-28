@@ -50,13 +50,15 @@ class UserController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:50',
             'last_name' => 'required|string|max:50',
-            'email' => 'required|email|unique:users,email,' . $user->user_id . ',user_id',
+            'email' => 'nullable|email|unique:users,email,' . $user->user_id . ',user_id',
             'password' => 'nullable|string|min:6',
+            'gender' => 'required|in:male,female,none',
         ]);
 
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+        $user->gender     = $request->gender;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);

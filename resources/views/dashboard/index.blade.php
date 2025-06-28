@@ -48,12 +48,11 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Active Members</h6>
-                        <h4 class="mb-0">210</h4>
+                        <h4 class="mb-0">5</h4>
                     </div>
                 </div>
             </div>
         </div>
-
         {{-- Staff --}}
         <div class="col">
             <div class="card shadow-sm border-left-warning h-100">
@@ -93,7 +92,7 @@
                     </div>
                     <div>
                         <h6 class="text-muted">Present Attendance </h6>
-                        <h4 class="mb-0">89</h4>
+                        <h4 class="mb-0">10</h4>
                     </div>
                 </div>
             </div>
